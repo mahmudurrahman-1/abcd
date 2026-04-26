@@ -25,19 +25,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
 .brand span{color:var(--accent);}
 .login-box p{color:var(--muted);font-size:0.9rem;margin-bottom:28px;}
 .login-btn{width:100%;padding:13px;background:var(--accent);color:#000;border:none;
-  border-radius:10px;font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;
-  cursor:pointer;transition:opacity 0.2s;}
+  border-radius:10px;font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;transition:opacity 0.2s;}
 .login-btn:hover{opacity:0.85;}
-
-/* SETUP BANNER */
-#setupBanner{display:none;background:#1a2a1a;border:1px solid #2ecc71;border-radius:12px;
-  padding:20px 24px;margin:20px;color:#2ecc71;font-size:0.88rem;line-height:1.7;}
-#setupBanner h3{color:#fff;margin-bottom:8px;font-size:1rem;}
-#setupBanner code{background:rgba(46,204,113,0.15);padding:2px 6px;border-radius:4px;font-size:0.82rem;}
-#setupBanner input{width:100%;padding:10px 14px;margin:6px 0 10px;background:#0e0f14;
-  border:1.5px solid #2ecc71;border-radius:8px;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.9rem;}
-#setupBanner button{background:#2ecc71;color:#000;border:none;padding:9px 20px;
-  border-radius:8px;font-weight:700;cursor:pointer;margin-right:8px;}
 
 /* MAIN APP */
 #adminApp{display:none;min-height:100vh;flex-direction:column;}
@@ -66,7 +55,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
 .stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;animation:fadeUp 0.4s ease;}
 .stat-card .label{font-size:0.78rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;}
 .stat-card .value{font-family:'Syne',sans-serif;font-size:1.9rem;font-weight:800;}
-.value.orange{color:var(--accent);} .value.red{color:var(--accent2);} .value.green{color:var(--green);} .value.blue{color:var(--blue);}
+.value.orange{color:var(--accent);}.value.red{color:var(--accent2);}.value.green{color:var(--green);}.value.blue{color:var(--blue);}
 
 /* SECTION HEADER */
 .section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
@@ -111,12 +100,21 @@ tr:hover td{background:rgba(255,255,255,0.02);}
 .fg input:focus,.fg textarea:focus,.fg select:focus{outline:none;border-color:var(--accent);}
 .form-actions{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap;}
 
-/* IMAGE UPLOAD */
-.img-upload-area{border:2px dashed var(--border);border-radius:10px;padding:20px;
-  text-align:center;cursor:pointer;transition:border-color 0.2s;position:relative;}
-.img-upload-area:hover{border-color:var(--accent);}
-.img-upload-area input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
-.img-preview{width:100%;max-height:180px;object-fit:cover;border-radius:8px;margin-top:10px;display:none;}
+/* IMAGE PATH PREVIEW */
+.img-path-preview{
+  width:80px;height:60px;border-radius:8px;object-fit:cover;
+  border:1px solid var(--border);background:var(--surface);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.6rem;overflow:hidden;flex-shrink:0;
+}
+.img-path-preview img{width:100%;height:100%;object-fit:cover;}
+
+/* INFO BOX */
+.info-box{background:rgba(74,158,255,0.08);border:1px solid rgba(74,158,255,0.25);
+  border-radius:10px;padding:14px 18px;font-size:0.85rem;line-height:1.7;color:var(--muted);margin-bottom:20px;}
+.info-box strong{color:var(--ink);}
+.info-box code{background:rgba(74,158,255,0.15);padding:2px 7px;border-radius:4px;
+  font-family:monospace;font-size:0.82rem;color:var(--blue);}
 
 /* ORDER DETAIL */
 .order-detail{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
@@ -134,13 +132,6 @@ tr:hover td{background:rgba(255,255,255,0.02);}
 .settings-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;}
 .settings-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;}
 .settings-card h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:16px;}
-
-/* DB STATUS */
-.db-status{display:inline-flex;align-items:center;gap:6px;font-size:0.8rem;padding:4px 12px;
-  border-radius:20px;font-weight:600;}
-.db-status.ok{background:rgba(46,204,113,0.15);color:var(--green);}
-.db-status.err{background:rgba(232,54,74,0.15);color:var(--accent2);}
-.db-status.loading{background:rgba(74,158,255,0.15);color:var(--blue);}
 
 /* TOAST */
 .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);
@@ -168,34 +159,16 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <p>Sign in securely with Netlify Identity</p>
     <button class="login-btn" onclick="netlifyIdentity.open()">🔐 Sign In →</button>
     <p style="margin-top:16px;font-size:0.78rem;color:var(--muted);text-align:center;">
-      Password secured by Netlify Identity — never stored in code ✅
+      Password secured by Netlify Identity ✅
     </p>
   </div>
 </div>
 
 <!-- ADMIN APP -->
 <div id="adminApp">
-  <!-- DB Setup Banner -->
-  <div id="setupBanner">
-    <h3>⚙️ First Time Setup — Connect Free Database (JSONBin)</h3>
-    <p>Products need a free online database so customers on any device can see them.<br>
-    1. Go to <strong>jsonbin.io</strong> → Sign up free → Click <strong>"New Bin"</strong><br>
-    2. Paste this as content: <code>{"products":[]}</code> → Click <strong>Create</strong><br>
-    3. Copy the <strong>Bin ID</strong> (looks like: 64a1b2c3d4e5f6a7b8c9d0e1)<br>
-    4. Go to <strong>Account → API Keys</strong> → copy your <strong>Master Key</strong><br>
-    5. Paste both below and click Save:</p>
-    <label style="font-size:0.8rem;color:#aaa;">JSONBin Bin ID</label>
-    <input type="text" id="setupBinId" placeholder="64a1b2c3d4e5f6a7b8c9d0e1"/>
-    <label style="font-size:0.8rem;color:#aaa;">JSONBin Master Key (API Key)</label>
-    <input type="text" id="setupApiKey" placeholder="$2b$10$..."/>
-    <button onclick="saveDbConfig()">💾 Save & Connect</button>
-    <button onclick="document.getElementById('setupBanner').style.display='none'" style="background:var(--border);color:#fff;">Skip for now</button>
-  </div>
-
   <div class="topbar">
     <div class="topbar-brand">Nexa<span>Mart</span> Admin</div>
     <div class="topbar-right">
-      <span class="db-status loading" id="dbStatus">⏳ Checking DB</span>
       <span class="topbar-user" id="topbarUser">👤 Admin</span>
       <button class="logout-btn" onclick="logout()">Sign Out</button>
     </div>
@@ -264,27 +237,38 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div id="tab-products" style="display:none;">
       <div class="section-header">
         <h2>Products</h2>
-        <button class="btn btn-accent" onclick="openProductForm()">+ Add Product</button>
+        <div style="display:flex;gap:8px;">
+          <button class="btn btn-ghost" onclick="exportProductsJSON()">⬇ Export products.json</button>
+          <button class="btn btn-accent" onclick="openProductForm()">+ Add Product</button>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <strong>How images work:</strong> Place image files in an <code>images/</code> folder in your project root
+        (e.g. <code>images/leather-bag.jpg</code>), then set the <strong>Image Path</strong> field to that path.
+        Works perfectly with GitHub hosting — no uploads or external services needed.
+        <br><strong>Tip:</strong> After editing products here, click <strong>⬇ Export products.json</strong> and replace the file in your repo.
       </div>
 
       <div class="form-panel" id="productFormPanel">
-        <h3 id="formTitle">Add New Product</h3>
+        <h3 id="formTitle">➕ Add New Product</h3>
         <input type="hidden" id="editProductId"/>
         <div class="form-grid">
           <div class="fg"><label>Product Name *</label><input type="text" id="pName" placeholder="e.g. Leather Bag"/></div>
           <div class="fg"><label>Category</label><input type="text" id="pCategory" placeholder="e.g. Accessories"/></div>
           <div class="fg"><label>Regular Price (৳) *</label><input type="number" id="pPrice" placeholder="0"/></div>
-          <div class="fg"><label>Offer Price (৳) <span style="color:var(--accent);font-size:0.75rem;">leave blank = no offer</span></label><input type="number" id="pOfferPrice" placeholder="0"/></div>
-          <div class="fg"><label>Emoji (if no image)</label><input type="text" id="pEmoji" placeholder="👜" maxlength="4"/></div>
           <div class="fg">
-            <label>Product Image</label>
-            <div class="img-upload-area" id="imgUploadArea">
-              <input type="file" id="pImageFile" accept="image/*" onchange="handleImageUpload(this)"/>
-              <div id="imgPlaceholder">📷 Click to upload image<br><small style="color:var(--muted);">Max 2MB — JPG, PNG, WEBP</small></div>
-              <img id="imgPreview" class="img-preview"/>
-              <input type="hidden" id="pImageData"/>
+            <label>Offer Price (৳) <span style="color:var(--accent);font-size:0.75rem;font-weight:400;text-transform:none;">leave blank = no offer</span></label>
+            <input type="number" id="pOfferPrice" placeholder="0"/>
+          </div>
+          <div class="fg"><label>Emoji (fallback if no image)</label><input type="text" id="pEmoji" placeholder="👜" maxlength="4"/></div>
+          <div class="fg">
+            <label>Image Path <span style="color:var(--accent);font-size:0.75rem;font-weight:400;text-transform:none;">relative to project root</span></label>
+            <input type="text" id="pImagePath" placeholder="images/leather-bag.jpg" oninput="previewImagePath(this.value)"/>
+            <div style="margin-top:8px;display:flex;align-items:center;gap:10px;">
+              <div class="img-path-preview" id="imgPathPreview">📷</div>
+              <span style="font-size:0.78rem;color:var(--muted);">Preview (needs file to exist)</span>
             </div>
-            <button type="button" onclick="clearImageUpload()" style="margin-top:6px;background:var(--accent2);color:#fff;border:none;padding:5px 12px;border-radius:6px;cursor:pointer;font-size:0.8rem;display:none;" id="clearImgBtn">✕ Remove Image</button>
           </div>
           <div class="fg full"><label>Description *</label><textarea id="pDesc" rows="3" placeholder="Describe the product..."></textarea></div>
         </div>
@@ -292,7 +276,6 @@ tr:hover td{background:rgba(255,255,255,0.02);}
           <button class="btn btn-accent" onclick="saveProduct()" id="saveProductBtn">💾 Save Product</button>
           <button class="btn btn-ghost" onclick="closeProductForm()">Cancel</button>
         </div>
-        <p id="productSaveNote" style="display:none;margin-top:10px;font-size:0.8rem;color:var(--muted);"></p>
       </div>
 
       <div class="table-wrap">
@@ -309,14 +292,6 @@ tr:hover td{background:rgba(255,255,255,0.02);}
       <div class="settings-grid">
 
         <div class="settings-card">
-          <h3>🗄️ Database (JSONBin)</h3>
-          <div class="fg" style="margin-bottom:12px;"><label>Bin ID</label><input type="text" id="settingBinId" placeholder="64a1b2c3..."/></div>
-          <div class="fg" style="margin-bottom:16px;"><label>Master API Key</label><input type="password" id="settingApiKey" placeholder="$2b$10$..."/></div>
-          <button class="btn btn-accent" onclick="saveDbConfig()">Save & Test Connection</button>
-          <p id="dbTestResult" style="margin-top:10px;font-size:0.82rem;"></p>
-        </div>
-
-        <div class="settings-card">
           <h3>🏪 Shop Info</h3>
           <div class="fg" style="margin-bottom:12px;"><label>Shop Name</label><input type="text" id="shopName" placeholder="NexaMart"/></div>
           <div class="fg" style="margin-bottom:12px;"><label>Your Email</label><input type="email" id="shopEmail" placeholder="you@email.com"/></div>
@@ -327,14 +302,14 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <div class="settings-card">
           <h3>🔐 Change Password</h3>
           <p style="color:var(--muted);font-size:0.88rem;margin-bottom:16px;line-height:1.6;">
-            Password is secured by Netlify Identity.<br>Click below to change it securely.
+            Password is secured by Netlify Identity.<br>Click below to change it.
           </p>
           <button class="btn btn-accent" onclick="netlifyIdentity.open('settings')">🔑 Change Password</button>
         </div>
 
         <div class="settings-card">
           <h3>📤 Export Orders</h3>
-          <p style="color:var(--muted);font-size:0.88rem;margin-bottom:16px;line-height:1.6;">Download all orders as JSON file — open in Excel or any text editor.</p>
+          <p style="color:var(--muted);font-size:0.88rem;margin-bottom:16px;line-height:1.6;">Download all orders as JSON file.</p>
           <button class="btn btn-ghost" onclick="exportOrders()">⬇ Download Orders JSON</button>
         </div>
 
@@ -366,8 +341,9 @@ netlifyIdentity.on('passwordRecovery', () => netlifyIdentity.open('settings'));
 
 function showAdminApp() {
   document.getElementById('loginScreen').style.display = 'none';
-  document.getElementById('adminApp').style.display = 'flex';
-  document.getElementById('adminApp').style.flexDirection = 'column';
+  const app = document.getElementById('adminApp');
+  app.style.display = 'flex';
+  app.style.flexDirection = 'column';
   const user = netlifyIdentity.currentUser();
   if (user) document.getElementById('topbarUser').textContent = '👤 ' + (user.email || 'Admin');
   initApp();
@@ -377,95 +353,26 @@ function logout() { netlifyIdentity.logout(); }
 // ═══════════════════════════════════════════════════════════
 // LOCAL STORAGE HELPERS
 // ═══════════════════════════════════════════════════════════
-const getOrders = () => JSON.parse(localStorage.getItem('shop_orders') || '[]');
-const setOrders = v => localStorage.setItem('shop_orders', JSON.stringify(v));
+const getOrders   = () => JSON.parse(localStorage.getItem('shop_orders')   || '[]');
+const setOrders   = v  => localStorage.setItem('shop_orders', JSON.stringify(v));
 const getSettings = () => JSON.parse(localStorage.getItem('shop_settings') || '{}');
-const saveSettings = v => localStorage.setItem('shop_settings', JSON.stringify(v));
-
-// ═══════════════════════════════════════════════════════════
-// JSONBIN DATABASE
-// ═══════════════════════════════════════════════════════════
-function getDbConfig() {
-  const s = getSettings();
-  return { binId: s.binId || '', apiKey: s.apiKey || '' };
-}
-
-async function dbGetProducts() {
-  const { binId, apiKey } = getDbConfig();
-  if (!binId || !apiKey) return null;
-  try {
-    const res = await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`, {
-      headers: { 'X-Master-Key': apiKey }
-    });
-    if (!res.ok) throw new Error('DB error');
-    const data = await res.json();
-    return data.record.products || [];
-  } catch(e) { return null; }
-}
-
-async function dbSaveProducts(products) {
-  const { binId, apiKey } = getDbConfig();
-  if (!binId || !apiKey) return false;
-  try {
-    const res = await fetch(`https://api.jsonbin.io/v3/b/${binId}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json', 'X-Master-Key': apiKey },
-      body: JSON.stringify({ products })
-    });
-    return res.ok;
-  } catch(e) { return false; }
-}
-
-async function testDbConnection() {
-  setDbStatus('loading', '⏳ Testing...');
-  const products = await dbGetProducts();
-  if (products !== null) {
-    setDbStatus('ok', '✅ DB Connected');
-    return true;
-  } else {
-    setDbStatus('err', '❌ DB Not Connected');
-    return false;
-  }
-}
-
-function setDbStatus(type, text) {
-  const el = document.getElementById('dbStatus');
-  el.className = 'db-status ' + type;
-  el.textContent = text;
-}
-
-async function saveDbConfig() {
-  // Read from either setup banner or settings tab
-  const binId = (document.getElementById('setupBinId').value || document.getElementById('settingBinId').value || '').trim();
-  const apiKey = (document.getElementById('setupApiKey').value || document.getElementById('settingApiKey').value || '').trim();
-  if (!binId || !apiKey) { showToast('Enter both Bin ID and API Key!', true); return; }
-  const s = getSettings();
-  s.binId = binId; s.apiKey = apiKey;
-  saveSettings(s);
-  document.getElementById('settingBinId').value = binId;
-  document.getElementById('settingApiKey').value = apiKey;
-  document.getElementById('setupBanner').style.display = 'none';
-  const ok = await testDbConnection();
-  const msg = ok ? '✅ Connected successfully!' : '❌ Connection failed. Check your Bin ID and API Key.';
-  const resultEl = document.getElementById('dbTestResult');
-  if (resultEl) { resultEl.textContent = msg; resultEl.style.color = ok ? 'var(--green)' : 'var(--accent2)'; }
-  showToast(ok ? 'Database connected!' : 'Connection failed!', !ok);
-}
+const saveSettings= v  => localStorage.setItem('shop_settings', JSON.stringify(v));
+const getProducts = () => JSON.parse(localStorage.getItem('shop_products') || 'null');
+const setProducts = v  => localStorage.setItem('shop_products', JSON.stringify(v));
 
 // ═══════════════════════════════════════════════════════════
 // TABS
 // ═══════════════════════════════════════════════════════════
 function switchTab(name) {
-  document.querySelectorAll('.tab').forEach((t,i) => t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.main > div[id^="tab-"]').forEach(d => d.style.display = 'none');
   const tabs = ['dashboard','orders','products','settings'];
-  const idx = tabs.indexOf(name);
-  document.querySelectorAll('.tab')[idx].classList.add('active');
+  document.querySelectorAll('.tab')[tabs.indexOf(name)].classList.add('active');
   document.getElementById('tab-' + name).style.display = 'block';
   if (name === 'dashboard') renderDashboard();
-  if (name === 'orders') renderOrders();
-  if (name === 'products') renderProductsTable();
-  if (name === 'settings') loadSettings();
+  if (name === 'orders')    renderOrders();
+  if (name === 'products')  renderProductsTable();
+  if (name === 'settings')  loadSettings();
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -473,11 +380,12 @@ function switchTab(name) {
 // ═══════════════════════════════════════════════════════════
 async function renderDashboard() {
   const orders = getOrders();
-  document.getElementById('stat-orders').textContent = orders.length;
-  document.getElementById('stat-new').textContent = orders.filter(o => o.status === 'new').length;
-  document.getElementById('stat-revenue').textContent = '৳' + orders.reduce((s,o) => s + (o.total||0), 0);
-  const products = await dbGetProducts();
-  document.getElementById('stat-products').textContent = products ? products.length : '—';
+  document.getElementById('stat-orders').textContent  = orders.length;
+  document.getElementById('stat-new').textContent     = orders.filter(o => o.status === 'new').length;
+  document.getElementById('stat-revenue').textContent = '৳' + orders.reduce((s,o) => s+(o.total||0), 0);
+  const products = await loadProducts();
+  document.getElementById('stat-products').textContent = products.length;
+
   const tbody = document.getElementById('recentOrdersBody');
   const recent = [...orders].reverse().slice(0,5);
   if (!recent.length) {
@@ -499,6 +407,7 @@ async function renderDashboard() {
 // ORDERS
 // ═══════════════════════════════════════════════════════════
 let viewingOrderId = null;
+
 function renderOrders() {
   const orders = getOrders();
   const tbody = document.getElementById('ordersBody');
@@ -537,8 +446,9 @@ function viewOrder(id) {
     (o.items||[]).map(i => `${i.emoji||'📦'} <strong>${i.name}</strong> × ${i.qty} = ৳${i.price*i.qty}`).join('<br>')
     + `<br><strong style="color:var(--accent);">Total: ৳${o.total}</strong>`;
   document.getElementById('statusSelect').value = o.status || 'new';
-  document.getElementById('orderDetailPanel').classList.add('open');
-  document.getElementById('orderDetailPanel').scrollIntoView({behavior:'smooth',block:'nearest'});
+  const panel = document.getElementById('orderDetailPanel');
+  panel.classList.add('open');
+  panel.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
 function saveOrderStatus() {
@@ -559,40 +469,50 @@ function clearOrders() {
   showToast('All orders cleared', true);
 }
 function statusBadge(s) {
-  const map = {new:'badge-new',done:'badge-done',cancelled:'badge-cancelled'};
+  const map   = {new:'badge-new',done:'badge-done',cancelled:'badge-cancelled'};
   const label = {new:'New',processing:'Processing',done:'Delivered',cancelled:'Cancelled'};
   return `<span class="badge ${map[s]||'badge-new'}">${label[s]||s}</span>`;
 }
 function exportOrders() {
-  const orders = getOrders();
-  const blob = new Blob([JSON.stringify(orders, null, 2)], {type:'application/json'});
-  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
-  a.download = 'nexamart-orders.json'; a.click();
+  const blob = new Blob([JSON.stringify(getOrders(),null,2)],{type:'application/json'});
+  const a = document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='nexamart-orders.json'; a.click();
 }
 
 // ═══════════════════════════════════════════════════════════
-// PRODUCTS
+// PRODUCTS  — stored in localStorage, exported as products.json
 // ═══════════════════════════════════════════════════════════
 let localProducts = [];
 
+// Load products: prefer localStorage override, fallback to products.json file
+async function loadProducts() {
+  const saved = getProducts();
+  if (saved && Array.isArray(saved)) return saved;
+  try {
+    const res = await fetch('products.json?' + Date.now());
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.products || [];
+  } catch(e) { return []; }
+}
+
 async function renderProductsTable() {
   const tbody = document.getElementById('productsBody');
-  tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:30px;">⏳ Loading products...</td></tr>`;
-  const products = await dbGetProducts();
-  if (products === null) {
-    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:var(--accent2);padding:30px;">❌ Database not connected. Go to Settings → Database to connect JSONBin.</td></tr>`;
+  tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:30px;">⏳ Loading...</td></tr>`;
+  localProducts = await loadProducts();
+
+  if (!localProducts.length) {
+    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:30px;">No products yet. Click "+ Add Product".</td></tr>`;
     return;
   }
-  localProducts = products;
-  if (!products.length) {
-    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:30px;">No products yet. Click "+ Add Product" to start.</td></tr>`;
-    return;
-  }
-  tbody.innerHTML = products.map(p => `
-    <tr>
-      <td>${p.image
-        ? `<img src="${p.image}" style="width:48px;height:48px;object-fit:cover;border-radius:8px;">`
-        : `<span style="font-size:1.8rem;">${p.emoji||'📦'}</span>`}</td>
+  tbody.innerHTML = localProducts.map(p => {
+    const thumb = p.image
+      ? `<img src="${p.image}" style="width:48px;height:48px;object-fit:cover;border-radius:8px;"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+         <span style="font-size:1.8rem;display:none;">${p.emoji||'📦'}</span>`
+      : `<span style="font-size:1.8rem;">${p.emoji||'📦'}</span>`;
+    return `<tr>
+      <td>${thumb}</td>
       <td><strong>${p.name}</strong><div style="font-size:0.8rem;color:var(--muted);margin-top:2px;">${(p.desc||'').substring(0,50)}...</div></td>
       <td><span class="badge" style="background:rgba(74,158,255,0.1);color:var(--blue);">${p.category||'General'}</span></td>
       <td style="color:var(--accent);font-weight:700;">৳${p.price}</td>
@@ -604,117 +524,96 @@ async function renderProductsTable() {
         <button class="icon-btn edit" onclick="editProduct(${p.id})">✏️ Edit</button>
         <button class="icon-btn" onclick="deleteProduct(${p.id})">🗑</button>
       </div></td>
-    </tr>`).join('');
+    </tr>`;
+  }).join('');
 }
 
 function openProductForm(reset=true) {
   if (reset) {
     document.getElementById('formTitle').textContent = '➕ Add New Product';
     document.getElementById('editProductId').value = '';
-    ['pName','pPrice','pOfferPrice','pEmoji','pCategory','pDesc'].forEach(id => document.getElementById(id).value = '');
-    clearImageUpload();
+    ['pName','pPrice','pOfferPrice','pEmoji','pCategory','pDesc','pImagePath'].forEach(id => document.getElementById(id).value='');
+    document.getElementById('imgPathPreview').innerHTML = '📷';
   }
   document.getElementById('productFormPanel').classList.add('open');
   document.getElementById('pName').focus();
 }
 function closeProductForm() { document.getElementById('productFormPanel').classList.remove('open'); }
 
+function previewImagePath(path) {
+  const el = document.getElementById('imgPathPreview');
+  if (path) {
+    el.innerHTML = `<img src="${path}" onerror="this.parentElement.innerHTML='❌'">`;
+  } else {
+    el.innerHTML = '📷';
+  }
+}
+
 function editProduct(id) {
   const p = localProducts.find(x => x.id === id);
   if (!p) return;
   document.getElementById('formTitle').textContent = '✏️ Edit Product';
-  document.getElementById('editProductId').value = id;
-  document.getElementById('pName').value = p.name;
-  document.getElementById('pPrice').value = p.price;
-  document.getElementById('pOfferPrice').value = p.offerPrice || '';
-  document.getElementById('pEmoji').value = p.emoji || '';
-  document.getElementById('pCategory').value = p.category || '';
-  document.getElementById('pDesc').value = p.desc;
-  clearImageUpload();
-  if (p.image) {
-    document.getElementById('pImageData').value = p.image;
-    document.getElementById('imgPreview').src = p.image;
-    document.getElementById('imgPreview').style.display = 'block';
-    document.getElementById('imgPlaceholder').style.display = 'none';
-    document.getElementById('clearImgBtn').style.display = 'inline-block';
-  }
+  document.getElementById('editProductId').value   = id;
+  document.getElementById('pName').value           = p.name;
+  document.getElementById('pPrice').value          = p.price;
+  document.getElementById('pOfferPrice').value     = p.offerPrice || '';
+  document.getElementById('pEmoji').value          = p.emoji || '';
+  document.getElementById('pCategory').value       = p.category || '';
+  document.getElementById('pDesc').value           = p.desc;
+  document.getElementById('pImagePath').value      = p.image || '';
+  previewImagePath(p.image || '');
   openProductForm(false);
   document.getElementById('productFormPanel').scrollIntoView({behavior:'smooth'});
 }
 
-async function saveProduct() {
-  const name = document.getElementById('pName').value.trim();
-  const price = parseInt(document.getElementById('pPrice').value);
-  const offerPriceRaw = parseInt(document.getElementById('pOfferPrice').value);
-  const offerPrice = (!isNaN(offerPriceRaw) && offerPriceRaw > 0 && offerPriceRaw < price) ? offerPriceRaw : null;
-  const emoji = document.getElementById('pEmoji').value.trim() || '📦';
-  const category = document.getElementById('pCategory').value.trim() || 'General';
-  const desc = document.getElementById('pDesc').value.trim();
-  const editId = document.getElementById('editProductId').value;
-  const imageData = document.getElementById('pImageData').value;
+function saveProduct() {
+  const name        = document.getElementById('pName').value.trim();
+  const price       = parseInt(document.getElementById('pPrice').value);
+  const offerRaw    = parseInt(document.getElementById('pOfferPrice').value);
+  const offerPrice  = (!isNaN(offerRaw) && offerRaw > 0 && offerRaw < price) ? offerRaw : null;
+  const emoji       = document.getElementById('pEmoji').value.trim() || '📦';
+  const category    = document.getElementById('pCategory').value.trim() || 'General';
+  const desc        = document.getElementById('pDesc').value.trim();
+  const image       = document.getElementById('pImagePath').value.trim() || null;
+  const editId      = document.getElementById('editProductId').value;
 
   if (!name || !price || !desc) { showToast('Fill in Name, Price and Description!', true); return; }
-  if (offerPriceRaw && offerPriceRaw >= price) { showToast('Offer price must be less than regular price!', true); return; }
+  if (!isNaN(offerRaw) && offerRaw > 0 && offerRaw >= price) { showToast('Offer price must be less than regular price!', true); return; }
 
-  const { binId, apiKey } = getDbConfig();
-  if (!binId || !apiKey) { showToast('Connect database first in Settings!', true); return; }
-
-  const btn = document.getElementById('saveProductBtn');
-  btn.disabled = true; btn.textContent = '⏳ Saving...';
-
-  let products = await dbGetProducts() || [];
+  let products = [...localProducts];
   if (editId) {
     const idx = products.findIndex(p => p.id == editId);
-    if (idx > -1) products[idx] = { ...products[idx], name, price, offerPrice, emoji, category, desc, image: imageData };
+    if (idx > -1) products[idx] = { ...products[idx], name, price, offerPrice, emoji, category, desc, image };
   } else {
-    const newId = products.length ? Math.max(...products.map(p=>p.id)) + 1 : 1;
-    products.push({ id: newId, name, price, offerPrice, emoji, category, desc, image: imageData });
+    const newId = products.length ? Math.max(...products.map(p => p.id)) + 1 : 1;
+    products.push({ id: newId, name, price, offerPrice, emoji, category, desc, image });
   }
 
-  const ok = await dbSaveProducts(products);
-  btn.disabled = false; btn.textContent = '💾 Save Product';
-
-  if (ok) {
-    showToast(editId ? 'Product updated! ✅' : 'Product added! ✅');
-    closeProductForm();
-    renderProductsTable();
-  } else {
-    showToast('Failed to save. Check DB connection!', true);
-  }
+  setProducts(products);
+  localProducts = products;
+  showToast(editId ? 'Product updated! ✅' : 'Product added! ✅');
+  closeProductForm();
+  renderProductsTable();
 }
 
-async function deleteProduct(id) {
+function deleteProduct(id) {
   if (!confirm('Delete this product?')) return;
-  let products = await dbGetProducts() || [];
-  products = products.filter(p => p.id !== id);
-  const ok = await dbSaveProducts(products);
-  if (ok) { showToast('Product deleted', true); renderProductsTable(); }
-  else showToast('Failed to delete!', true);
+  const updated = localProducts.filter(p => p.id !== id);
+  setProducts(updated);
+  localProducts = updated;
+  showToast('Product deleted', true);
+  renderProductsTable();
 }
 
-// IMAGE UPLOAD
-function handleImageUpload(input) {
-  const file = input.files[0];
-  if (!file) return;
-  if (file.size > 2 * 1024 * 1024) { showToast('Image too large! Max 2MB.', true); input.value = ''; return; }
-  const reader = new FileReader();
-  reader.onload = e => {
-    document.getElementById('pImageData').value = e.target.result;
-    document.getElementById('imgPreview').src = e.target.result;
-    document.getElementById('imgPreview').style.display = 'block';
-    document.getElementById('imgPlaceholder').style.display = 'none';
-    document.getElementById('clearImgBtn').style.display = 'inline-block';
-    document.getElementById('pEmoji').value = '';
-  };
-  reader.readAsDataURL(file);
-}
-function clearImageUpload() {
-  document.getElementById('pImageData').value = '';
-  document.getElementById('pImageFile').value = '';
-  document.getElementById('imgPreview').src = '';
-  document.getElementById('imgPreview').style.display = 'none';
-  document.getElementById('imgPlaceholder').style.display = 'block';
-  document.getElementById('clearImgBtn').style.display = 'none';
+// Export the current product list as products.json for download
+function exportProductsJSON() {
+  const data = { products: localProducts };
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'products.json';
+  a.click();
+  showToast('products.json downloaded! Replace the file in your repo.');
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -722,22 +621,22 @@ function clearImageUpload() {
 // ═══════════════════════════════════════════════════════════
 function loadSettings() {
   const s = getSettings();
-  document.getElementById('shopName').value = s.shopName || 'NexaMart';
-  document.getElementById('shopEmail').value = s.shopEmail || '';
+  document.getElementById('shopName').value    = s.shopName    || 'NexaMart';
+  document.getElementById('shopEmail').value   = s.shopEmail   || '';
   document.getElementById('formspreeId').value = s.formspreeId || '';
-  document.getElementById('settingBinId').value = s.binId || '';
-  document.getElementById('settingApiKey').value = s.apiKey || '';
 }
 function saveShopSettings() {
   const s = getSettings();
-  s.shopName = document.getElementById('shopName').value.trim();
-  s.shopEmail = document.getElementById('shopEmail').value.trim();
+  s.shopName    = document.getElementById('shopName').value.trim();
+  s.shopEmail   = document.getElementById('shopEmail').value.trim();
   s.formspreeId = document.getElementById('formspreeId').value.trim();
-  saveSettings(s); showToast('Settings saved!');
+  saveSettings(s);
+  showToast('Settings saved!');
 }
 function resetAll() {
   if (!confirm('DELETE ALL LOCAL DATA? Cannot undo!')) return;
-  localStorage.clear(); showToast('Reset done', true);
+  localStorage.clear();
+  showToast('Reset done', true);
   setTimeout(() => location.reload(), 1200);
 }
 
@@ -756,11 +655,6 @@ function showToast(msg, isError=false) {
 // ═══════════════════════════════════════════════════════════
 function initApp() {
   renderDashboard();
-  testDbConnection();
-  const s = getSettings();
-  if (!s.binId || !s.apiKey) {
-    document.getElementById('setupBanner').style.display = 'block';
-  }
 }
 </script>
 </body>

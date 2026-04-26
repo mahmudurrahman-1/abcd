@@ -1,0 +1,84 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Premium Leather Bag",
+      "emoji": "👜",
+      "price": 1200,
+      "offerPrice": null,
+      "category": "Accessories",
+      "image": "images/leather-bag.jpg",
+      "desc": "Handcrafted genuine leather bag. Durable, stylish, and perfect for everyday use. Available in brown and black."
+    },
+    {
+      "id": 2,
+      "name": "Wireless Earbuds",
+      "emoji": "🎧",
+      "price": 1100,
+      "offerPrice": 850,
+      "category": "Electronics",
+      "image": "images/earbuds.jpg",
+      "desc": "Crystal clear sound with deep bass. 6 hours battery life, comes with charging case. Sweat resistant."
+    },
+    {
+      "id": 3,
+      "name": "Cotton Kurta",
+      "emoji": "👕",
+      "price": 600,
+      "offerPrice": 450,
+      "category": "Clothing",
+      "image": "images/kurta.jpg",
+      "desc": "Soft 100% cotton kurta, perfect for all seasons. Available in S, M, L, XL sizes. Multiple colors available."
+    },
+    {
+      "id": 4,
+      "name": "Stainless Water Bottle",
+      "emoji": "🍶",
+      "price": 320,
+      "offerPrice": null,
+      "category": "Kitchen",
+      "image": "images/water-bottle.jpg",
+      "desc": "Double-wall insulated. Keeps drinks cold 24hrs, hot 12hrs. 750ml capacity. Leak-proof lid."
+    },
+    {
+      "id": 5,
+      "name": "Smart Watch",
+      "emoji": "⌚",
+      "price": 2200,
+      "offerPrice": 1800,
+      "category": "Electronics",
+      "image": "images/smart-watch.jpg",
+      "desc": "Tracks steps, heart rate, and sleep. Notification alerts, 7 day battery. Water resistant."
+    },
+    {
+      "id": 6,
+      "name": "Scented Candle Set",
+      "emoji": "🕯️",
+      "price": 380,
+      "offerPrice": null,
+      "category": "Home",
+      "image": "images/candle-set.jpg",
+      "desc": "Set of 3 luxury scented candles. Lavender, rose, and jasmine. 30+ hours burn time each."
+    },
+    {
+      "id": 7,
+      "name": "Ceramic Coffee Mug",
+      "emoji": "☕",
+      "price": 220,
+      "offerPrice": null,
+      "category": "Kitchen",
+      "image": "images/coffee-mug.jpg",
+      "desc": "Handmade ceramic mug, 350ml. Microwave and dishwasher safe. Unique earthy glaze design."
+    },
+    {
+      "id": 8,
+      "name": "Desk Organizer",
+      "emoji": "🗂️",
+      "price": 550,
+      "offerPrice": null,
+      "category": "Office",
+      "image": "images/desk-organizer.jpg",
+      "desc": "Bamboo desk organizer with 5 compartments. Keep your workspace clean and productive."
+    }
+  ]
+}
