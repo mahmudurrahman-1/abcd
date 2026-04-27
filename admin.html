@@ -2,232 +2,186 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>NexaMart Admin — Reliable Bazaar Bd</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Admin — NexaMart</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <style>
-:root {
-  --bg:#0e0f14; --surface:#161820; --card:#1c1e27; --border:#2a2d3a;
-  --ink:#f0f0f5; --muted:#7a7d8e; --accent:#f5a623; --accent2:#e8364a;
-  --green:#2ecc71; --blue:#4a9eff; --radius:12px; --shadow:0 4px 24px rgba(0,0,0,0.4);
-}
+:root{--bg:#0e0f14;--surface:#161820;--card:#1c1e27;--border:#2a2d3a;--ink:#f0f0f5;--muted:#7a7d8e;--accent:#f5a623;--red:#e8364a;--green:#2ecc71;--blue:#4a9eff;--r:12px;}
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;}
+a{color:inherit;text-decoration:none;}
 
-/* LOGIN */
-#loginScreen{min-height:100vh;display:flex;align-items:center;justify-content:center;
-  background:radial-gradient(ellipse at 50% 0%,rgba(245,166,35,0.12) 0%,transparent 60%),var(--bg);}
-.login-box{background:var(--card);border:1px solid var(--border);border-radius:20px;
-  padding:48px 40px;width:100%;max-width:400px;box-shadow:var(--shadow);animation:fadeUp 0.5s ease;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+#loginScreen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 0%,rgba(245,166,35,.12) 0%,transparent 60%),var(--bg);}
+.login-box{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:48px 40px;width:100%;max-width:400px;animation:fadeUp .4s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 .brand{font-family:'Syne',sans-serif;font-size:1.7rem;font-weight:800;margin-bottom:6px;}
 .brand span{color:var(--accent);}
-.login-box p{color:var(--muted);font-size:0.9rem;margin-bottom:28px;}
-.login-btn{width:100%;padding:13px;background:var(--accent);color:#000;border:none;
-  border-radius:10px;font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;transition:opacity 0.2s;}
-.login-btn:hover{opacity:0.85;}
+.login-sub{color:var(--muted);font-size:.9rem;margin-bottom:28px;}
+.login-btn{width:100%;padding:13px;background:var(--accent);color:#000;border:none;border-radius:10px;font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;}
+.login-btn:hover{opacity:.85;}
 
-/* MAIN APP */
-#adminApp{display:none;min-height:100vh;flex-direction:column;}
-.topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 28px;
-  height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;}
-.topbar-brand{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;}
+#adminApp{display:none;flex-direction:column;min-height:100vh;}
+.topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;height:58px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;}
+.topbar-brand{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:800;}
 .topbar-brand span{color:var(--accent);}
-.topbar-right{display:flex;align-items:center;gap:16px;}
-.topbar-user{font-size:0.85rem;color:var(--muted);}
-.logout-btn{background:var(--border);border:none;color:var(--ink);padding:7px 16px;
-  border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;cursor:pointer;}
-.logout-btn:hover{background:var(--accent2);}
-
-/* TABS */
-.tabs{background:var(--surface);border-bottom:1px solid var(--border);padding:0 28px;display:flex;gap:4px;overflow-x:auto;}
-.tab{padding:14px 20px;font-weight:600;font-size:0.9rem;cursor:pointer;color:var(--muted);
-  border-bottom:2px solid transparent;transition:color 0.2s,border-color 0.2s;white-space:nowrap;}
+.topbar-right{display:flex;align-items:center;gap:12px;}
+.topbar-user{font-size:.82rem;color:var(--muted);}
+.logout-btn{background:var(--border);border:none;color:var(--ink);padding:6px 14px;border-radius:7px;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:600;cursor:pointer;}
+.logout-btn:hover{background:var(--red);}
+.tabs{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;display:flex;gap:2px;overflow-x:auto;}
+.tab{padding:13px 18px;font-weight:600;font-size:.87rem;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap;}
 .tab:hover{color:var(--ink);}
 .tab.active{color:var(--accent);border-bottom-color:var(--accent);}
+.main{padding:24px;flex:1;}
 
-/* CONTENT */
-.main{padding:28px;flex:1;}
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:24px;}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;}
+.stat .lbl{font-size:.74rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+.stat .val{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;}
+.val.orange{color:var(--accent);}.val.red{color:var(--red);}.val.green{color:var(--green);}.val.blue{color:var(--blue);}
 
-/* STATS */
-.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:28px;}
-.stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;animation:fadeUp 0.4s ease;}
-.stat-card .label{font-size:0.78rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;}
-.stat-card .value{font-family:'Syne',sans-serif;font-size:1.9rem;font-weight:800;}
-.value.orange{color:var(--accent);}.value.red{color:var(--accent2);}.value.green{color:var(--green);}.value.blue{color:var(--blue);}
-
-/* SECTION HEADER */
-.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
-.section-header h2{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;}
-.btn{padding:9px 20px;border-radius:8px;font-family:'DM Sans',sans-serif;font-weight:600;
-  font-size:0.88rem;cursor:pointer;border:none;transition:opacity 0.2s,transform 0.15s;}
-.btn:hover{opacity:0.85;transform:scale(1.02);}
+.sec-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+.sec-hdr h2{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:700;}
+.btn{padding:8px 18px;border-radius:8px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:.85rem;cursor:pointer;border:none;transition:opacity .2s;}
+.btn:hover{opacity:.8;}
 .btn-accent{background:var(--accent);color:#000;}
-.btn-red{background:var(--accent2);color:#fff;}
+.btn-red{background:var(--red);color:#fff;}
 .btn-ghost{background:var(--border);color:var(--ink);}
 
-/* TABLE */
-.table-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;overflow-x:auto;}
+.tbl-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;overflow-x:auto;}
 table{width:100%;border-collapse:collapse;}
-th{background:var(--surface);padding:12px 16px;text-align:left;font-size:0.78rem;
-  font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;}
-td{padding:14px 16px;border-top:1px solid var(--border);font-size:0.9rem;vertical-align:middle;}
-tr:hover td{background:rgba(255,255,255,0.02);}
-.badge{display:inline-block;padding:3px 10px;border-radius:50px;font-size:0.75rem;font-weight:600;}
-.badge-new{background:rgba(74,158,255,0.15);color:var(--blue);}
-.badge-done{background:rgba(46,204,113,0.15);color:var(--green);}
-.badge-cancelled{background:rgba(232,54,74,0.15);color:var(--accent2);}
-.action-btns{display:flex;gap:8px;}
-.icon-btn{background:var(--border);border:none;padding:6px 10px;border-radius:7px;
-  cursor:pointer;font-size:0.8rem;color:var(--ink);transition:background 0.2s;}
-.icon-btn:hover{background:var(--accent2);}
-.icon-btn.edit:hover{background:var(--blue);}
+th{background:var(--surface);padding:11px 14px;text-align:left;font-size:.74rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
+td{padding:12px 14px;border-top:1px solid var(--border);font-size:.88rem;vertical-align:middle;}
+tr:hover td{background:rgba(255,255,255,.02);}
+.badge{display:inline-block;padding:3px 9px;border-radius:50px;font-size:.72rem;font-weight:600;}
+.b-new{background:rgba(74,158,255,.15);color:var(--blue);}
+.b-done{background:rgba(46,204,113,.15);color:var(--green);}
+.b-cancelled{background:rgba(232,54,74,.15);color:var(--red);}
+.b-processing{background:rgba(245,166,35,.15);color:var(--accent);}
+.act-btns{display:flex;gap:6px;}
+.ib{background:var(--border);border:none;padding:5px 9px;border-radius:6px;cursor:pointer;font-size:.78rem;color:var(--ink);transition:background .2s;}
+.ib:hover{background:var(--red);}
+.ib.edit:hover{background:var(--blue);}
 
 /* FORM PANEL */
-.form-panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
-  padding:24px;margin-bottom:24px;display:none;animation:fadeUp 0.3s ease;}
+.form-panel{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px;margin-bottom:20px;display:none;animation:fadeUp .25s ease;}
 .form-panel.open{display:block;}
-.form-panel h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:18px;}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-.fg{display:flex;flex-direction:column;gap:5px;}
+.form-panel h3{font-family:'Syne',sans-serif;font-size:.97rem;font-weight:700;margin-bottom:16px;}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.fg{display:flex;flex-direction:column;gap:4px;}
 .fg.full{grid-column:1/-1;}
-.fg label{font-size:0.78rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.4px;}
-.fg input,.fg textarea,.fg select{
-  padding:10px 14px;background:var(--surface);border:1.5px solid var(--border);
-  border-radius:8px;color:var(--ink);font-family:'DM Sans',sans-serif;font-size:0.9rem;
-  transition:border-color 0.2s;resize:none;}
+.fg label{font-size:.74rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;}
+.fg input,.fg textarea,.fg select{padding:9px 12px;background:var(--surface);border:1.5px solid var(--border);border-radius:7px;color:var(--ink);font-family:'DM Sans',sans-serif;font-size:.88rem;transition:border-color .2s;resize:none;}
 .fg input:focus,.fg textarea:focus,.fg select:focus{outline:none;border-color:var(--accent);}
-.form-actions{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap;}
+.form-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
 
-/* IMAGE PATH PREVIEW */
-.img-path-preview{
-  width:80px;height:60px;border-radius:8px;object-fit:cover;
-  border:1px solid var(--border);background:var(--surface);
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.6rem;overflow:hidden;flex-shrink:0;
-}
-.img-path-preview img{width:100%;height:100%;object-fit:cover;}
+/* IMAGE PREVIEW */
+.img-preview{width:72px;height:56px;border-radius:8px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.5rem;overflow:hidden;flex-shrink:0;}
+.img-preview img{width:100%;height:100%;object-fit:cover;}
 
 /* INFO BOX */
-.info-box{background:rgba(74,158,255,0.08);border:1px solid rgba(74,158,255,0.25);
-  border-radius:10px;padding:14px 18px;font-size:0.85rem;line-height:1.7;color:var(--muted);margin-bottom:20px;}
+.info-box{background:rgba(74,158,255,.07);border:1px solid rgba(74,158,255,.2);border-radius:9px;padding:12px 16px;font-size:.82rem;line-height:1.7;color:var(--muted);margin-bottom:18px;}
 .info-box strong{color:var(--ink);}
-.info-box code{background:rgba(74,158,255,0.15);padding:2px 7px;border-radius:4px;
-  font-family:monospace;font-size:0.82rem;color:var(--blue);}
+.info-box code{background:rgba(74,158,255,.15);padding:1px 6px;border-radius:4px;font-family:monospace;font-size:.8rem;color:var(--blue);}
+
+/* WARN BOX */
+.warn-box{background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.25);border-radius:9px;padding:12px 16px;font-size:.82rem;line-height:1.7;color:var(--muted);margin-bottom:16px;}
+.warn-box strong{color:var(--accent);}
 
 /* ORDER DETAIL */
-.order-detail{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
-  padding:24px;margin-top:20px;display:none;animation:fadeUp 0.3s ease;}
+.order-detail{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px;margin-top:18px;display:none;animation:fadeUp .25s ease;}
 .order-detail.open{display:block;}
-.order-detail h3{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:16px;}
-.order-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
-.oi{background:var(--surface);border-radius:8px;padding:12px 14px;}
-.oi-label{font-size:0.75rem;color:var(--muted);font-weight:600;text-transform:uppercase;margin-bottom:4px;}
-.oi-val{font-size:0.92rem;font-weight:500;}
-.order-items-list{background:var(--surface);border-radius:8px;padding:14px;margin-bottom:16px;line-height:1.8;font-size:0.9rem;}
-.status-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+.order-detail h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:14px;}
+.oi-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.oi{background:var(--surface);border-radius:7px;padding:10px 12px;}
+.oi-lbl{font-size:.72rem;color:var(--muted);font-weight:600;text-transform:uppercase;margin-bottom:3px;}
+.oi-val{font-size:.88rem;font-weight:500;}
+.order-items-list{background:var(--surface);border-radius:7px;padding:12px;margin-bottom:14px;line-height:1.9;font-size:.88rem;}
+.status-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.status-row select{padding:7px 10px;background:var(--surface);border:1.5px solid var(--border);border-radius:7px;color:var(--ink);font-family:'DM Sans',sans-serif;font-size:.85rem;}
 
 /* SETTINGS */
-.settings-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;}
-.settings-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;}
-.settings-card h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:16px;}
+.settings-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;}
+.s-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px;}
+.s-card h3{font-family:'Syne',sans-serif;font-size:.97rem;font-weight:700;margin-bottom:14px;}
+.s-card p{color:var(--muted);font-size:.85rem;line-height:1.6;margin-bottom:14px;}
 
 /* TOAST */
-.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);
-  background:var(--card);border:1px solid var(--border);color:var(--ink);
-  padding:12px 24px;border-radius:50px;font-weight:600;font-size:0.9rem;
-  z-index:999;transition:transform 0.35s cubic-bezier(.17,.67,.39,1.3);white-space:nowrap;
-  box-shadow:var(--shadow);}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(70px);background:var(--card);border:1px solid var(--border);color:var(--ink);padding:10px 22px;border-radius:50px;font-weight:600;font-size:.88rem;z-index:999;transition:transform .3s cubic-bezier(.17,.67,.39,1.3);white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,.4);}
 .toast.show{transform:translateX(-50%) translateY(0);}
-.toast.error{background:var(--accent2);color:#fff;border-color:var(--accent2);}
+.toast.err{background:var(--red);color:#fff;border-color:var(--red);}
 
-@media(max-width:600px){
-  .form-grid{grid-template-columns:1fr;}
-  .order-info-grid{grid-template-columns:1fr;}
-  .main{padding:16px;}
-  .settings-grid{grid-template-columns:1fr;}
-}
+@media(max-width:600px){.fgrid{grid-template-columns:1fr;}.oi-grid{grid-template-columns:1fr;}.main{padding:14px;}.settings-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
 <div id="loginScreen">
   <div class="login-box">
     <div class="brand">Nexa<span>Mart</span> Admin</div>
-    <p>Sign in securely with Netlify Identity</p>
-    <button class="login-btn" onclick="netlifyIdentity.open()">🔐 Sign In →</button>
-    <p style="margin-top:16px;font-size:0.78rem;color:var(--muted);text-align:center;">
-      Password secured by Netlify Identity ✅
-    </p>
+    <p class="login-sub">Sign in with Netlify Identity to manage your shop</p>
+    <button class="login-btn" onclick="netlifyIdentity.open()">🔐 Sign In</button>
   </div>
 </div>
 
-<!-- ADMIN APP -->
 <div id="adminApp">
   <div class="topbar">
     <div class="topbar-brand">Nexa<span>Mart</span> Admin</div>
     <div class="topbar-right">
       <span class="topbar-user" id="topbarUser">👤 Admin</span>
-      <button class="logout-btn" onclick="logout()">Sign Out</button>
+      <button class="logout-btn" onclick="netlifyIdentity.logout()">Sign Out</button>
     </div>
   </div>
-
   <div class="tabs">
     <div class="tab active" onclick="switchTab('dashboard')">📊 Dashboard</div>
     <div class="tab" onclick="switchTab('orders')">📦 Orders</div>
     <div class="tab" onclick="switchTab('products')">🛍️ Products</div>
     <div class="tab" onclick="switchTab('settings')">⚙️ Settings</div>
   </div>
-
   <div class="main">
 
     <!-- DASHBOARD -->
     <div id="tab-dashboard">
       <div class="stats-row">
-        <div class="stat-card"><div class="label">Total Orders</div><div class="value blue" id="stat-orders">0</div></div>
-        <div class="stat-card"><div class="label">New Orders</div><div class="value orange" id="stat-new">0</div></div>
-        <div class="stat-card"><div class="label">Revenue</div><div class="value green" id="stat-revenue">৳0</div></div>
-        <div class="stat-card"><div class="label">Products</div><div class="value" id="stat-products">0</div></div>
+        <div class="stat"><div class="lbl">Total Orders</div><div class="val blue" id="s-total">0</div></div>
+        <div class="stat"><div class="lbl">New Orders</div><div class="val orange" id="s-new">0</div></div>
+        <div class="stat"><div class="lbl">Revenue</div><div class="val green" id="s-rev">৳0</div></div>
+        <div class="stat"><div class="lbl">Products</div><div class="val" id="s-prod">0</div></div>
       </div>
-      <div class="section-header"><h2>Recent Orders</h2></div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>#</th><th>Customer</th><th>Phone</th><th>Total</th><th>Status</th><th>Date</th></tr></thead>
-          <tbody id="recentOrdersBody"></tbody>
-        </table>
+      <div class="sec-hdr"><h2>Recent Orders</h2></div>
+      <div class="tbl-wrap">
+        <table><thead><tr><th>#</th><th>Customer</th><th>Phone</th><th>District</th><th>Total</th><th>Status</th><th>Date</th></tr></thead>
+        <tbody id="recentBody"></tbody></table>
       </div>
     </div>
 
     <!-- ORDERS -->
     <div id="tab-orders" style="display:none;">
-      <div class="section-header">
+      <div class="sec-hdr">
         <h2>All Orders</h2>
         <div style="display:flex;gap:8px;">
-          <button class="btn btn-ghost" onclick="exportOrders()">⬇ Export</button>
+          <button class="btn btn-ghost" onclick="exportOrders()">⬇ Export JSON</button>
           <button class="btn btn-red" onclick="clearOrders()">🗑 Clear All</button>
         </div>
       </div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>#</th><th>Customer</th><th>Phone</th><th>Address</th><th>Total</th><th>Status</th><th>Actions</th></tr></thead>
-          <tbody id="ordersBody"></tbody>
-        </table>
+      <div class="tbl-wrap">
+        <table><thead><tr><th>#</th><th>Name</th><th>Phone</th><th>District</th><th>Subtotal</th><th>Delivery</th><th>Total</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody id="ordersBody"></tbody></table>
       </div>
       <div class="order-detail" id="orderDetailPanel">
         <h3 id="orderDetailTitle">Order Details</h3>
-        <div class="order-info-grid" id="orderInfoGrid"></div>
+        <div class="oi-grid" id="orderInfoGrid"></div>
         <div class="order-items-list" id="orderItemsList"></div>
         <div class="status-row">
-          <label style="font-size:0.8rem;color:var(--muted);font-weight:600;">STATUS:</label>
-          <select id="statusSelect" style="padding:8px 12px;background:var(--surface);border:1.5px solid var(--border);border-radius:8px;color:var(--ink);font-family:'DM Sans',sans-serif;">
+          <label style="font-size:.78rem;color:var(--muted);font-weight:600;">STATUS:</label>
+          <select id="statusSelect">
             <option value="new">🔵 New</option>
             <option value="processing">🟡 Processing</option>
             <option value="done">🟢 Delivered</option>
             <option value="cancelled">🔴 Cancelled</option>
           </select>
-          <button class="btn btn-accent" onclick="saveOrderStatus()">Save</button>
+          <button class="btn btn-accent" onclick="saveStatus()">Save</button>
           <button class="btn btn-ghost" onclick="document.getElementById('orderDetailPanel').classList.remove('open')">Close</button>
         </div>
       </div>
@@ -235,90 +189,88 @@ tr:hover td{background:rgba(255,255,255,0.02);}
 
     <!-- PRODUCTS -->
     <div id="tab-products" style="display:none;">
-      <div class="section-header">
+      <div class="sec-hdr">
         <h2>Products</h2>
         <div style="display:flex;gap:8px;">
-          <button class="btn btn-ghost" onclick="exportProductsJSON()">⬇ Export products.json</button>
-          <button class="btn btn-accent" onclick="openProductForm()">+ Add Product</button>
+          <button class="btn btn-ghost" onclick="downloadJSON()">⬇ Download products.json</button>
+          <button class="btn btn-accent" onclick="openForm()">+ Add Product</button>
         </div>
       </div>
 
       <div class="info-box">
-        <strong>How images work:</strong> Place image files in an <code>images/</code> folder in your project root
-        (e.g. <code>images/leather-bag.jpg</code>), then set the <strong>Image Path</strong> field to that path.
-        Works perfectly with GitHub hosting — no uploads or external services needed.
-        <br><strong>Tip:</strong> After editing products here, click <strong>⬇ Export products.json</strong> and replace the file in your repo.
+        <strong>How to add images:</strong> Put image files in the <code>images/</code> folder in your project root,
+        then set the <strong>Image Path</strong> to e.g. <code>images/my-product.jpg</code>.<br/>
+        <strong>After adding/editing products:</strong> Click <strong>⬇ Download products.json</strong> and replace the file in your GitHub repo to keep it in sync.
       </div>
 
-      <div class="form-panel" id="productFormPanel">
+      <div class="warn-box">
+        <strong>⚠️ Important:</strong> Changes you make here are saved instantly to your browser's localStorage (so the shop updates immediately). 
+        Download <code>products.json</code> and commit it to your repo so changes persist after clearing browser data.
+      </div>
+
+      <div class="form-panel" id="productForm">
         <h3 id="formTitle">➕ Add New Product</h3>
-        <input type="hidden" id="editProductId"/>
-        <div class="form-grid">
-          <div class="fg"><label>Product Name *</label><input type="text" id="pName" placeholder="e.g. Leather Bag"/></div>
-          <div class="fg"><label>Category</label><input type="text" id="pCategory" placeholder="e.g. Accessories"/></div>
-          <div class="fg"><label>Regular Price (৳) *</label><input type="number" id="pPrice" placeholder="0"/></div>
+        <input type="hidden" id="editId"/>
+        <div class="fgrid">
+          <div class="fg"><label>Name *</label><input type="text" id="fName" placeholder="e.g. Leather Bag"/></div>
+          <div class="fg"><label>Category</label><input type="text" id="fCat" placeholder="e.g. Accessories"/></div>
+          <div class="fg"><label>Regular Price (৳) *</label><input type="number" id="fPrice" placeholder="0" min="0"/></div>
+          <div class="fg"><label>Offer Price (৳) <span style="font-weight:400;text-transform:none;font-size:.72rem;">(blank = no offer)</span></label>
+            <input type="number" id="fOffer" placeholder="0" min="0"/></div>
+          <div class="fg"><label>Emoji (fallback)</label><input type="text" id="fEmoji" placeholder="📦" maxlength="4"/></div>
           <div class="fg">
-            <label>Offer Price (৳) <span style="color:var(--accent);font-size:0.75rem;font-weight:400;text-transform:none;">leave blank = no offer</span></label>
-            <input type="number" id="pOfferPrice" placeholder="0"/>
-          </div>
-          <div class="fg"><label>Emoji (fallback if no image)</label><input type="text" id="pEmoji" placeholder="👜" maxlength="4"/></div>
-          <div class="fg">
-            <label>Image Path <span style="color:var(--accent);font-size:0.75rem;font-weight:400;text-transform:none;">relative to project root</span></label>
-            <input type="text" id="pImagePath" placeholder="images/leather-bag.jpg" oninput="previewImagePath(this.value)"/>
-            <div style="margin-top:8px;display:flex;align-items:center;gap:10px;">
-              <div class="img-path-preview" id="imgPathPreview">📷</div>
-              <span style="font-size:0.78rem;color:var(--muted);">Preview (needs file to exist)</span>
+            <label>Image Path <span style="font-weight:400;text-transform:none;font-size:.72rem;">(relative to project root)</span></label>
+            <input type="text" id="fImage" placeholder="images/product.jpg" oninput="previewImg(this.value)"/>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:8px;">
+              <div class="img-preview" id="imgPreview">📷</div>
+              <span style="font-size:.75rem;color:var(--muted);">Preview (file must exist locally)</span>
             </div>
           </div>
-          <div class="fg full"><label>Description *</label><textarea id="pDesc" rows="3" placeholder="Describe the product..."></textarea></div>
+          <div class="fg full">
+            <label>Description * <span style="font-weight:400;text-transform:none;font-size:.72rem;">(use Enter for new lines — they'll show on product page)</span></label>
+            <textarea id="fDesc" rows="5" placeholder="Describe the product...&#10;&#10;• Feature 1&#10;• Feature 2"></textarea>
+          </div>
         </div>
         <div class="form-actions">
-          <button class="btn btn-accent" onclick="saveProduct()" id="saveProductBtn">💾 Save Product</button>
-          <button class="btn btn-ghost" onclick="closeProductForm()">Cancel</button>
+          <button class="btn btn-accent" onclick="saveProduct()">💾 Save Product</button>
+          <button class="btn btn-ghost" onclick="closeForm()">Cancel</button>
         </div>
       </div>
 
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Image</th><th>Name</th><th>Category</th><th>Price</th><th>Offer</th><th>Actions</th></tr></thead>
-          <tbody id="productsBody"></tbody>
-        </table>
+      <div class="tbl-wrap">
+        <table><thead><tr><th>Image</th><th>Name</th><th>Category</th><th>Price</th><th>Offer</th><th>Actions</th></tr></thead>
+        <tbody id="productsBody"></tbody></table>
       </div>
     </div>
 
     <!-- SETTINGS -->
     <div id="tab-settings" style="display:none;">
-      <div class="section-header"><h2>Settings</h2></div>
+      <div class="sec-hdr"><h2>Settings</h2></div>
       <div class="settings-grid">
-
-        <div class="settings-card">
-          <h3>🏪 Shop Info</h3>
-          <div class="fg" style="margin-bottom:12px;"><label>Shop Name</label><input type="text" id="shopName" placeholder="NexaMart"/></div>
-          <div class="fg" style="margin-bottom:12px;"><label>Your Email</label><input type="email" id="shopEmail" placeholder="you@email.com"/></div>
-          <div class="fg" style="margin-bottom:16px;"><label>Formspree ID <span style="color:var(--accent);font-size:0.75rem;">(for order emails)</span></label><input type="text" id="formspreeId" placeholder="xpzgkwqr"/></div>
-          <button class="btn btn-accent" onclick="saveShopSettings()">Save Settings</button>
+        <div class="s-card">
+          <h3>📬 Formspree Email</h3>
+          <p>Orders will be emailed to you via Formspree. Create a free form at <strong>formspree.io</strong> and paste the form ID here.</p>
+          <div class="fg" style="margin-bottom:12px;"><label>Formspree Form ID</label><input type="text" id="formspreeId" placeholder="xpzgkwqr"/></div>
+          <button class="btn btn-accent" onclick="saveSettings()">Save</button>
         </div>
-
-        <div class="settings-card">
+        <div class="s-card">
           <h3>🔐 Change Password</h3>
-          <p style="color:var(--muted);font-size:0.88rem;margin-bottom:16px;line-height:1.6;">
-            Password is secured by Netlify Identity.<br>Click below to change it.
-          </p>
-          <button class="btn btn-accent" onclick="netlifyIdentity.open('settings')">🔑 Change Password</button>
+          <p>Password managed by Netlify Identity.</p>
+          <button class="btn btn-accent" onclick="netlifyIdentity.open('settings')">Change Password</button>
         </div>
-
-        <div class="settings-card">
-          <h3>📤 Export Orders</h3>
-          <p style="color:var(--muted);font-size:0.88rem;margin-bottom:16px;line-height:1.6;">Download all orders as JSON file.</p>
-          <button class="btn btn-ghost" onclick="exportOrders()">⬇ Download Orders JSON</button>
+        <div class="s-card">
+          <h3>📤 Export Data</h3>
+          <p>Download all orders or products as JSON files.</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="btn btn-ghost" onclick="exportOrders()">⬇ Orders</button>
+            <button class="btn btn-ghost" onclick="downloadJSON()">⬇ products.json</button>
+          </div>
         </div>
-
-        <div class="settings-card">
+        <div class="s-card">
           <h3>🗑️ Danger Zone</h3>
-          <p style="color:var(--muted);font-size:0.88rem;margin-bottom:16px;line-height:1.6;">Delete all local data. Cannot be undone.</p>
+          <p>Clears all local data including orders and product overrides. Cannot be undone.</p>
           <button class="btn btn-red" onclick="resetAll()">Reset All Local Data</button>
         </div>
-
       </div>
     </div>
 
@@ -328,333 +280,271 @@ tr:hover td{background:rgba(255,255,255,0.02);}
 <div class="toast" id="toast">Saved!</div>
 
 <script>
-// ═══════════════════════════════════════════════════════════
-// NETLIFY IDENTITY
-// ═══════════════════════════════════════════════════════════
-netlifyIdentity.on('init', user => { if (user) showAdminApp(); });
-netlifyIdentity.on('login', user => { netlifyIdentity.close(); showAdminApp(); });
-netlifyIdentity.on('logout', () => {
-  document.getElementById('loginScreen').style.display = 'flex';
-  document.getElementById('adminApp').style.display = 'none';
-});
-netlifyIdentity.on('passwordRecovery', () => netlifyIdentity.open('settings'));
+'use strict';
+/* ═══════════════════════════════
+   AUTH
+═══════════════════════════════ */
+netlifyIdentity.on('init',function(u){if(u)showApp();});
+netlifyIdentity.on('login',function(){netlifyIdentity.close();showApp();});
+netlifyIdentity.on('logout',function(){document.getElementById('loginScreen').style.display='flex';document.getElementById('adminApp').style.display='none';});
+netlifyIdentity.on('passwordRecovery',function(){netlifyIdentity.open('settings');});
 
-function showAdminApp() {
-  document.getElementById('loginScreen').style.display = 'none';
-  const app = document.getElementById('adminApp');
-  app.style.display = 'flex';
-  app.style.flexDirection = 'column';
-  const user = netlifyIdentity.currentUser();
-  if (user) document.getElementById('topbarUser').textContent = '👤 ' + (user.email || 'Admin');
-  initApp();
-}
-function logout() { netlifyIdentity.logout(); }
-
-// ═══════════════════════════════════════════════════════════
-// LOCAL STORAGE HELPERS
-// ═══════════════════════════════════════════════════════════
-const getOrders   = () => JSON.parse(localStorage.getItem('shop_orders')   || '[]');
-const setOrders   = v  => localStorage.setItem('shop_orders', JSON.stringify(v));
-const getSettings = () => JSON.parse(localStorage.getItem('shop_settings') || '{}');
-const saveSettings= v  => localStorage.setItem('shop_settings', JSON.stringify(v));
-const getProducts = () => JSON.parse(localStorage.getItem('shop_products') || 'null');
-const setProducts = v  => localStorage.setItem('shop_products', JSON.stringify(v));
-
-// ═══════════════════════════════════════════════════════════
-// TABS
-// ═══════════════════════════════════════════════════════════
-function switchTab(name) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.main > div[id^="tab-"]').forEach(d => d.style.display = 'none');
-  const tabs = ['dashboard','orders','products','settings'];
-  document.querySelectorAll('.tab')[tabs.indexOf(name)].classList.add('active');
-  document.getElementById('tab-' + name).style.display = 'block';
-  if (name === 'dashboard') renderDashboard();
-  if (name === 'orders')    renderOrders();
-  if (name === 'products')  renderProductsTable();
-  if (name === 'settings')  loadSettings();
+function showApp(){
+  document.getElementById('loginScreen').style.display='none';
+  var app=document.getElementById('adminApp');app.style.display='flex';
+  var u=netlifyIdentity.currentUser();
+  if(u)document.getElementById('topbarUser').textContent='👤 '+(u.email||'Admin');
+  loadAll();
 }
 
-// ═══════════════════════════════════════════════════════════
-// DASHBOARD
-// ═══════════════════════════════════════════════════════════
-async function renderDashboard() {
-  const orders = getOrders();
-  document.getElementById('stat-orders').textContent  = orders.length;
-  document.getElementById('stat-new').textContent     = orders.filter(o => o.status === 'new').length;
-  document.getElementById('stat-revenue').textContent = '৳' + orders.reduce((s,o) => s+(o.total||0), 0);
-  const products = await loadProducts();
-  document.getElementById('stat-products').textContent = products.length;
+/* ═══════════════════════════════
+   STORAGE
+═══════════════════════════════ */
+function getOrders(){return JSON.parse(localStorage.getItem('shop_orders')||'[]');}
+function setOrders(v){localStorage.setItem('shop_orders',JSON.stringify(v));}
+function getSettings(){return JSON.parse(localStorage.getItem('shop_settings')||'{}');}
+function setSettings(v){localStorage.setItem('shop_settings',JSON.stringify(v));}
 
-  const tbody = document.getElementById('recentOrdersBody');
-  const recent = [...orders].reverse().slice(0,5);
-  if (!recent.length) {
-    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:30px;">No orders yet</td></tr>`;
-    return;
-  }
-  tbody.innerHTML = recent.map(o => `
-    <tr>
-      <td style="color:var(--muted);font-size:0.82rem;">#${o.id}</td>
-      <td style="font-weight:600;">${o.name||'—'}</td>
-      <td>${o.phone||'—'}</td>
-      <td style="color:var(--accent);font-weight:600;">৳${o.total||0}</td>
-      <td>${statusBadge(o.status||'new')}</td>
-      <td style="color:var(--muted);font-size:0.82rem;">${o.date||'—'}</td>
-    </tr>`).join('');
+/* Products: localStorage is the source of truth at runtime.
+   On first load (or after reset), we pull from products.json */
+var LOCAL_PRODUCTS=null;
+
+async function loadProductsAdmin(){
+  if(LOCAL_PRODUCTS)return LOCAL_PRODUCTS;
+  var s=localStorage.getItem('shop_products');
+  if(s){try{var a=JSON.parse(s);if(Array.isArray(a)){LOCAL_PRODUCTS=a;return LOCAL_PRODUCTS;}}catch(e){}}
+  /* fetch from file */
+  try{var r=await fetch('products.json?v='+Date.now());if(!r.ok)throw 0;var d=await r.json();LOCAL_PRODUCTS=d.products||[];}
+  catch(e){LOCAL_PRODUCTS=[];}
+  /* persist to localStorage */
+  localStorage.setItem('shop_products',JSON.stringify(LOCAL_PRODUCTS));
+  return LOCAL_PRODUCTS;
 }
 
-// ═══════════════════════════════════════════════════════════
-// ORDERS
-// ═══════════════════════════════════════════════════════════
-let viewingOrderId = null;
-
-function renderOrders() {
-  const orders = getOrders();
-  const tbody = document.getElementById('ordersBody');
-  if (!orders.length) {
-    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:var(--muted);padding:40px;">No orders yet</td></tr>`;
-    return;
-  }
-  tbody.innerHTML = [...orders].reverse().map(o => `
-    <tr>
-      <td style="color:var(--muted);font-size:0.82rem;">#${o.id}</td>
-      <td style="font-weight:600;">${o.name||'—'}</td>
-      <td>${o.phone||'—'}</td>
-      <td style="font-size:0.83rem;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${o.address||'—'}</td>
-      <td style="color:var(--accent);font-weight:600;">৳${o.total||0}</td>
-      <td>${statusBadge(o.status||'new')}</td>
-      <td><div class="action-btns">
-        <button class="icon-btn edit" onclick="viewOrder(${o.id})">👁 View</button>
-        <button class="icon-btn" onclick="deleteOrder(${o.id})">🗑</button>
-      </div></td>
-    </tr>`).join('');
+function persistProducts(){
+  localStorage.setItem('shop_products',JSON.stringify(LOCAL_PRODUCTS));
 }
 
-function viewOrder(id) {
-  const o = getOrders().find(x => x.id === id);
-  if (!o) return;
-  viewingOrderId = id;
-  document.getElementById('orderDetailTitle').textContent = `Order #${o.id} — ${o.name}`;
-  document.getElementById('orderInfoGrid').innerHTML = `
-    <div class="oi"><div class="oi-label">Customer</div><div class="oi-val">${o.name}</div></div>
-    <div class="oi"><div class="oi-label">Phone</div><div class="oi-val">${o.phone}</div></div>
-    <div class="oi"><div class="oi-label">Email</div><div class="oi-val">${o.email||'—'}</div></div>
-    <div class="oi"><div class="oi-label">Date</div><div class="oi-val">${o.date||'—'}</div></div>
-    <div class="oi" style="grid-column:1/-1;"><div class="oi-label">Address</div><div class="oi-val">${o.address}</div></div>
-    ${o.note?`<div class="oi" style="grid-column:1/-1;"><div class="oi-label">Note</div><div class="oi-val">${o.note}</div></div>`:''}`;
-  document.getElementById('orderItemsList').innerHTML =
-    (o.items||[]).map(i => `${i.emoji||'📦'} <strong>${i.name}</strong> × ${i.qty} = ৳${i.price*i.qty}`).join('<br>')
-    + `<br><strong style="color:var(--accent);">Total: ৳${o.total}</strong>`;
-  document.getElementById('statusSelect').value = o.status || 'new';
-  const panel = document.getElementById('orderDetailPanel');
-  panel.classList.add('open');
-  panel.scrollIntoView({behavior:'smooth',block:'nearest'});
+/* ═══════════════════════════════
+   TABS
+═══════════════════════════════ */
+var TABS=['dashboard','orders','products','settings'];
+function switchTab(name){
+  document.querySelectorAll('.tab').forEach(function(t,i){t.classList.toggle('active',TABS[i]===name);});
+  TABS.forEach(function(t){document.getElementById('tab-'+t).style.display=t===name?'block':'none';});
+  if(name==='dashboard')renderDashboard();
+  else if(name==='orders')renderOrders();
+  else if(name==='products')renderProductsTable();
+  else if(name==='settings')loadSettingsUI();
 }
 
-function saveOrderStatus() {
-  const orders = getOrders();
-  const o = orders.find(x => x.id === viewingOrderId);
-  if (o) { o.status = document.getElementById('statusSelect').value; setOrders(orders); renderOrders(); showToast('Status updated!'); }
-}
-function deleteOrder(id) {
-  if (!confirm('Delete this order?')) return;
-  setOrders(getOrders().filter(o => o.id !== id));
-  renderOrders(); renderDashboard();
-  document.getElementById('orderDetailPanel').classList.remove('open');
-  showToast('Order deleted', true);
-}
-function clearOrders() {
-  if (!confirm('Delete ALL orders? Cannot be undone!')) return;
-  setOrders([]); renderOrders(); renderDashboard();
-  showToast('All orders cleared', true);
-}
-function statusBadge(s) {
-  const map   = {new:'badge-new',done:'badge-done',cancelled:'badge-cancelled'};
-  const label = {new:'New',processing:'Processing',done:'Delivered',cancelled:'Cancelled'};
-  return `<span class="badge ${map[s]||'badge-new'}">${label[s]||s}</span>`;
-}
-function exportOrders() {
-  const blob = new Blob([JSON.stringify(getOrders(),null,2)],{type:'application/json'});
-  const a = document.createElement('a'); a.href=URL.createObjectURL(blob);
-  a.download='nexamart-orders.json'; a.click();
-}
+async function loadAll(){renderDashboard();}
 
-// ═══════════════════════════════════════════════════════════
-// PRODUCTS  — stored in localStorage, exported as products.json
-// ═══════════════════════════════════════════════════════════
-let localProducts = [];
-
-// Load products: prefer localStorage override, fallback to products.json file
-async function loadProducts() {
-  const saved = getProducts();
-  if (saved && Array.isArray(saved)) return saved;
-  try {
-    const res = await fetch('products.json?' + Date.now());
-    if (!res.ok) return [];
-    const data = await res.json();
-    return data.products || [];
-  } catch(e) { return []; }
-}
-
-async function renderProductsTable() {
-  const tbody = document.getElementById('productsBody');
-  tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:30px;">⏳ Loading...</td></tr>`;
-  localProducts = await loadProducts();
-
-  if (!localProducts.length) {
-    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:30px;">No products yet. Click "+ Add Product".</td></tr>`;
-    return;
-  }
-  tbody.innerHTML = localProducts.map(p => {
-    const thumb = p.image
-      ? `<img src="${p.image}" style="width:48px;height:48px;object-fit:cover;border-radius:8px;"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-         <span style="font-size:1.8rem;display:none;">${p.emoji||'📦'}</span>`
-      : `<span style="font-size:1.8rem;">${p.emoji||'📦'}</span>`;
-    return `<tr>
-      <td>${thumb}</td>
-      <td><strong>${p.name}</strong><div style="font-size:0.8rem;color:var(--muted);margin-top:2px;">${(p.desc||'').substring(0,50)}...</div></td>
-      <td><span class="badge" style="background:rgba(74,158,255,0.1);color:var(--blue);">${p.category||'General'}</span></td>
-      <td style="color:var(--accent);font-weight:700;">৳${p.price}</td>
-      <td>${p.offerPrice
-        ? `<span style="color:var(--green);font-weight:700;">৳${p.offerPrice}</span>
-           <span style="background:rgba(232,54,74,0.2);color:var(--accent2);font-size:0.7rem;padding:2px 6px;border-radius:4px;margin-left:4px;">${Math.round((1-p.offerPrice/p.price)*100)}% OFF</span>`
-        : '<span style="color:var(--muted);">—</span>'}</td>
-      <td><div class="action-btns">
-        <button class="icon-btn edit" onclick="editProduct(${p.id})">✏️ Edit</button>
-        <button class="icon-btn" onclick="deleteProduct(${p.id})">🗑</button>
-      </div></td>
-    </tr>`;
+/* ═══════════════════════════════
+   DASHBOARD
+═══════════════════════════════ */
+async function renderDashboard(){
+  var orders=getOrders();
+  document.getElementById('s-total').textContent=orders.length;
+  document.getElementById('s-new').textContent=orders.filter(function(o){return o.status==='new';}).length;
+  document.getElementById('s-rev').textContent='\u09F3'+orders.reduce(function(s,o){return s+(o.total||0);},0);
+  var products=await loadProductsAdmin();
+  document.getElementById('s-prod').textContent=products.length;
+  var tbody=document.getElementById('recentBody');
+  var recent=[].concat(orders).reverse().slice(0,5);
+  if(!recent.length){tbody.innerHTML='<tr><td colspan="7" style="text-align:center;color:var(--muted);padding:28px;">No orders yet</td></tr>';return;}
+  tbody.innerHTML=recent.map(function(o){
+    return '<tr><td style="color:var(--muted);font-size:.78rem;">#'+o.id+'</td><td style="font-weight:600;">'+o.name+'</td><td>'+o.phone+'</td><td>'+(o.district||'—')+'</td><td style="color:var(--accent);font-weight:600;">\u09F3'+(o.total||0)+'</td><td>'+statusBadge(o.status||'new')+'</td><td style="color:var(--muted);font-size:.78rem;">'+(o.date||'—')+'</td></tr>';
   }).join('');
 }
 
-function openProductForm(reset=true) {
-  if (reset) {
-    document.getElementById('formTitle').textContent = '➕ Add New Product';
-    document.getElementById('editProductId').value = '';
-    ['pName','pPrice','pOfferPrice','pEmoji','pCategory','pDesc','pImagePath'].forEach(id => document.getElementById(id).value='');
-    document.getElementById('imgPathPreview').innerHTML = '📷';
-  }
-  document.getElementById('productFormPanel').classList.add('open');
-  document.getElementById('pName').focus();
+/* ═══════════════════════════════
+   ORDERS
+═══════════════════════════════ */
+var viewingId=null;
+function renderOrders(){
+  var orders=getOrders();
+  var tbody=document.getElementById('ordersBody');
+  if(!orders.length){tbody.innerHTML='<tr><td colspan="9" style="text-align:center;color:var(--muted);padding:36px;">No orders yet</td></tr>';return;}
+  tbody.innerHTML=[].concat(orders).reverse().map(function(o){
+    return '<tr><td style="color:var(--muted);font-size:.78rem;">#'+o.id+'</td><td style="font-weight:600;">'+(o.name||'—')+'</td><td>'+(o.phone||'—')+'</td><td>'+(o.district||'—')+'</td><td>\u09F3'+(o.subtotal||0)+'</td><td>\u09F3'+(o.delivery||0)+'</td><td style="color:var(--accent);font-weight:600;">\u09F3'+(o.total||0)+'</td><td>'+statusBadge(o.status||'new')+'</td>'+
+      '<td><div class="act-btns"><button class="ib edit" onclick="viewOrder('+o.id+')">👁</button><button class="ib" onclick="deleteOrder('+o.id+')">🗑</button></div></td></tr>';
+  }).join('');
 }
-function closeProductForm() { document.getElementById('productFormPanel').classList.remove('open'); }
-
-function previewImagePath(path) {
-  const el = document.getElementById('imgPathPreview');
-  if (path) {
-    el.innerHTML = `<img src="${path}" onerror="this.parentElement.innerHTML='❌'">`;
-  } else {
-    el.innerHTML = '📷';
-  }
+function viewOrder(id){
+  var o=getOrders().find(function(x){return x.id===id;});if(!o)return;viewingId=id;
+  document.getElementById('orderDetailTitle').textContent='Order #'+o.id+' — '+o.name;
+  document.getElementById('orderInfoGrid').innerHTML=
+    '<div class="oi"><div class="oi-lbl">Customer</div><div class="oi-val">'+o.name+'</div></div>'+
+    '<div class="oi"><div class="oi-lbl">Phone</div><div class="oi-val">'+o.phone+'</div></div>'+
+    '<div class="oi"><div class="oi-lbl">District</div><div class="oi-val">'+(o.district||'—')+'</div></div>'+
+    '<div class="oi"><div class="oi-lbl">Date</div><div class="oi-val">'+(o.date||'—')+'</div></div>'+
+    '<div class="oi" style="grid-column:1/-1;"><div class="oi-lbl">Address</div><div class="oi-val">'+(o.address||'—')+'</div></div>'+
+    (o.note?'<div class="oi" style="grid-column:1/-1;"><div class="oi-lbl">Note</div><div class="oi-val">'+o.note+'</div></div>':'');
+  document.getElementById('orderItemsList').innerHTML=
+    (o.items||[]).map(function(i){return i.emoji+' <strong>'+i.name+'</strong> \u00D7'+i.qty+' = \u09F3'+(i.price*i.qty);}).join('<br>')+
+    '<br/><strong style="color:var(--accent);">Subtotal: \u09F3'+(o.subtotal||0)+' + Delivery: \u09F3'+(o.delivery||0)+' = Total: \u09F3'+(o.total||0)+'</strong>';
+  document.getElementById('statusSelect').value=o.status||'new';
+  var p=document.getElementById('orderDetailPanel');p.classList.add('open');p.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function saveStatus(){
+  var orders=getOrders();var o=orders.find(function(x){return x.id===viewingId;});
+  if(o){o.status=document.getElementById('statusSelect').value;setOrders(orders);renderOrders();toast('Status updated!');}
+}
+function deleteOrder(id){
+  if(!confirm('Delete this order?'))return;
+  setOrders(getOrders().filter(function(o){return o.id!==id;}));
+  renderOrders();renderDashboard();
+  document.getElementById('orderDetailPanel').classList.remove('open');
+  toast('Order deleted',true);
+}
+function clearOrders(){
+  if(!confirm('Delete ALL orders? Cannot be undone!'))return;
+  setOrders([]);renderOrders();renderDashboard();toast('All orders cleared',true);
+}
+function statusBadge(s){
+  var m={new:'b-new',processing:'b-processing',done:'b-done',cancelled:'b-cancelled'};
+  var l={new:'New',processing:'Processing',done:'Delivered',cancelled:'Cancelled'};
+  return '<span class="badge '+(m[s]||'b-new')+'">'+(l[s]||s)+'</span>';
+}
+function exportOrders(){
+  var b=new Blob([JSON.stringify(getOrders(),null,2)],{type:'application/json'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='nexamart-orders.json';a.click();
 }
 
-function editProduct(id) {
-  const p = localProducts.find(x => x.id === id);
-  if (!p) return;
-  document.getElementById('formTitle').textContent = '✏️ Edit Product';
-  document.getElementById('editProductId').value   = id;
-  document.getElementById('pName').value           = p.name;
-  document.getElementById('pPrice').value          = p.price;
-  document.getElementById('pOfferPrice').value     = p.offerPrice || '';
-  document.getElementById('pEmoji').value          = p.emoji || '';
-  document.getElementById('pCategory').value       = p.category || '';
-  document.getElementById('pDesc').value           = p.desc;
-  document.getElementById('pImagePath').value      = p.image || '';
-  previewImagePath(p.image || '');
-  openProductForm(false);
-  document.getElementById('productFormPanel').scrollIntoView({behavior:'smooth'});
+/* ═══════════════════════════════
+   PRODUCTS
+═══════════════════════════════ */
+async function renderProductsTable(){
+  var tbody=document.getElementById('productsBody');
+  tbody.innerHTML='<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:28px;">⏳ Loading…</td></tr>';
+  var products=await loadProductsAdmin();
+  if(!products.length){tbody.innerHTML='<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:28px;">No products. Click "+ Add Product".</td></tr>';return;}
+  tbody.innerHTML=products.map(function(p){
+    var thumb=p.image
+      ?'<img src="'+p.image+'" style="width:44px;height:44px;object-fit:cover;border-radius:6px;" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline\'"><span style="font-size:1.6rem;display:none;">'+( p.emoji||'📦')+'</span>'
+      :'<span style="font-size:1.8rem;">'+(p.emoji||'📦')+'</span>';
+    var offerHtml=p.offerPrice&&p.offerPrice>0&&p.offerPrice<p.price
+      ?'<span style="color:var(--green);font-weight:700;">\u09F3'+p.offerPrice+'</span> <span style="background:rgba(232,54,74,.2);color:var(--red);font-size:.68rem;padding:2px 6px;border-radius:4px;">'+Math.round((1-p.offerPrice/p.price)*100)+'% OFF</span>'
+      :'<span style="color:var(--muted);">—</span>';
+    return '<tr><td>'+thumb+'</td><td><strong>'+p.name+'</strong><div style="font-size:.78rem;color:var(--muted);margin-top:2px;">'+(p.desc||'').replace(/\n/g,' ').substring(0,50)+'…</div></td>'+
+      '<td><span class="badge b-new">'+(p.category||'General')+'</span></td>'+
+      '<td style="color:var(--accent);font-weight:700;">\u09F3'+p.price+'</td>'+
+      '<td>'+offerHtml+'</td>'+
+      '<td><div class="act-btns"><button class="ib edit" onclick="editProduct('+p.id+')">✏️ Edit</button><button class="ib" onclick="deleteProduct('+p.id+')">🗑 Delete</button></div></td></tr>';
+  }).join('');
 }
 
-function saveProduct() {
-  const name        = document.getElementById('pName').value.trim();
-  const price       = parseInt(document.getElementById('pPrice').value);
-  const offerRaw    = parseInt(document.getElementById('pOfferPrice').value);
-  const offerPrice  = (!isNaN(offerRaw) && offerRaw > 0 && offerRaw < price) ? offerRaw : null;
-  const emoji       = document.getElementById('pEmoji').value.trim() || '📦';
-  const category    = document.getElementById('pCategory').value.trim() || 'General';
-  const desc        = document.getElementById('pDesc').value.trim();
-  const image       = document.getElementById('pImagePath').value.trim() || null;
-  const editId      = document.getElementById('editProductId').value;
+function openForm(reset){
+  if(reset!==false){
+    document.getElementById('formTitle').textContent='➕ Add New Product';
+    document.getElementById('editId').value='';
+    ['fName','fCat','fPrice','fOffer','fEmoji','fImage','fDesc'].forEach(function(id){document.getElementById(id).value='';});
+    document.getElementById('imgPreview').innerHTML='📷';
+  }
+  document.getElementById('productForm').classList.add('open');
+  document.getElementById('fName').focus();
+}
+function closeForm(){document.getElementById('productForm').classList.remove('open');}
 
-  if (!name || !price || !desc) { showToast('Fill in Name, Price and Description!', true); return; }
-  if (!isNaN(offerRaw) && offerRaw > 0 && offerRaw >= price) { showToast('Offer price must be less than regular price!', true); return; }
+function previewImg(path){
+  var el=document.getElementById('imgPreview');
+  if(path){el.innerHTML='<img src="'+path+'" onerror="this.parentElement.innerHTML=\'❌\'">';}
+  else{el.innerHTML='📷';}
+}
 
-  let products = [...localProducts];
-  if (editId) {
-    const idx = products.findIndex(p => p.id == editId);
-    if (idx > -1) products[idx] = { ...products[idx], name, price, offerPrice, emoji, category, desc, image };
-  } else {
-    const newId = products.length ? Math.max(...products.map(p => p.id)) + 1 : 1;
-    products.push({ id: newId, name, price, offerPrice, emoji, category, desc, image });
+async function editProduct(id){
+  var products=await loadProductsAdmin();
+  var p=products.find(function(x){return x.id===id;});if(!p)return;
+  document.getElementById('formTitle').textContent='✏️ Edit Product';
+  document.getElementById('editId').value=id;
+  document.getElementById('fName').value=p.name;
+  document.getElementById('fCat').value=p.category||'';
+  document.getElementById('fPrice').value=p.price;
+  document.getElementById('fOffer').value=p.offerPrice||'';
+  document.getElementById('fEmoji').value=p.emoji||'';
+  document.getElementById('fImage').value=p.image||'';
+  document.getElementById('fDesc').value=p.desc||'';
+  previewImg(p.image||'');
+  openForm(false);
+  document.getElementById('productForm').scrollIntoView({behavior:'smooth'});
+}
+
+async function saveProduct(){
+  var name=document.getElementById('fName').value.trim();
+  var cat=document.getElementById('fCat').value.trim()||'General';
+  var price=parseInt(document.getElementById('fPrice').value);
+  var offerRaw=document.getElementById('fOffer').value.trim();
+  var offerPrice=offerRaw&&parseInt(offerRaw)>0&&parseInt(offerRaw)<price?parseInt(offerRaw):null;
+  var emoji=document.getElementById('fEmoji').value.trim()||'📦';
+  var image=document.getElementById('fImage').value.trim()||null;
+  var desc=document.getElementById('fDesc').value.trim();
+  var editId=document.getElementById('editId').value;
+
+  if(!name||isNaN(price)||!desc){toast('Name, Price and Description are required!',true);return;}
+  if(offerRaw&&parseInt(offerRaw)>=price){toast('Offer price must be less than regular price!',true);return;}
+
+  var products=await loadProductsAdmin();
+
+  if(editId){
+    var idx=products.findIndex(function(p){return p.id==editId;});
+    if(idx>-1)products[idx]=Object.assign(products[idx],{name:name,category:cat,price:price,offerPrice:offerPrice,emoji:emoji,image:image,desc:desc});
+  }else{
+    var newId=products.reduce(function(m,p){return Math.max(m,p.id||0);},0)+1;
+    products.push({id:newId,name:name,category:cat,price:price,offerPrice:offerPrice,emoji:emoji,image:image,desc:desc});
   }
 
-  setProducts(products);
-  localProducts = products;
-  showToast(editId ? 'Product updated! ✅' : 'Product added! ✅');
-  closeProductForm();
+  LOCAL_PRODUCTS=products;
+  persistProducts();   /* ← saves to localStorage immediately → shop shows updated products */
+  toast(editId?'Product updated! ✅':'Product added! ✅');
+  closeForm();
   renderProductsTable();
-}
-
-function deleteProduct(id) {
-  if (!confirm('Delete this product?')) return;
-  const updated = localProducts.filter(p => p.id !== id);
-  setProducts(updated);
-  localProducts = updated;
-  showToast('Product deleted', true);
-  renderProductsTable();
-}
-
-// Export the current product list as products.json for download
-function exportProductsJSON() {
-  const data = { products: localProducts };
-  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'products.json';
-  a.click();
-  showToast('products.json downloaded! Replace the file in your repo.');
-}
-
-// ═══════════════════════════════════════════════════════════
-// SETTINGS
-// ═══════════════════════════════════════════════════════════
-function loadSettings() {
-  const s = getSettings();
-  document.getElementById('shopName').value    = s.shopName    || 'NexaMart';
-  document.getElementById('shopEmail').value   = s.shopEmail   || '';
-  document.getElementById('formspreeId').value = s.formspreeId || '';
-}
-function saveShopSettings() {
-  const s = getSettings();
-  s.shopName    = document.getElementById('shopName').value.trim();
-  s.shopEmail   = document.getElementById('shopEmail').value.trim();
-  s.formspreeId = document.getElementById('formspreeId').value.trim();
-  saveSettings(s);
-  showToast('Settings saved!');
-}
-function resetAll() {
-  if (!confirm('DELETE ALL LOCAL DATA? Cannot undo!')) return;
-  localStorage.clear();
-  showToast('Reset done', true);
-  setTimeout(() => location.reload(), 1200);
-}
-
-// ═══════════════════════════════════════════════════════════
-// TOAST
-// ═══════════════════════════════════════════════════════════
-function showToast(msg, isError=false) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'toast show' + (isError ? ' error' : '');
-  setTimeout(() => t.className = 'toast', 2800);
-}
-
-// ═══════════════════════════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════════════════════════
-function initApp() {
   renderDashboard();
+}
+
+async function deleteProduct(id){
+  if(!confirm('Delete this product?'))return;
+  var products=await loadProductsAdmin();
+  LOCAL_PRODUCTS=products.filter(function(p){return p.id!==id;});
+  persistProducts();   /* ← removes from localStorage immediately */
+  toast('Product deleted',true);
+  renderProductsTable();
+  renderDashboard();
+}
+
+/* Download current product list as products.json */
+async function downloadJSON(){
+  var products=await loadProductsAdmin();
+  var data={products:products};
+  var b=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='products.json';a.click();
+  toast('products.json downloaded! Commit it to your repo.');
+}
+
+/* ═══════════════════════════════
+   SETTINGS
+═══════════════════════════════ */
+function loadSettingsUI(){
+  var s=getSettings();
+  document.getElementById('formspreeId').value=s.formspreeId||'';
+}
+function saveSettings(){
+  var s=getSettings();s.formspreeId=document.getElementById('formspreeId').value.trim();
+  setSettings(s);toast('Settings saved!');
+}
+function resetAll(){
+  if(!confirm('DELETE ALL LOCAL DATA? Cannot undo!'))return;
+  localStorage.clear();LOCAL_PRODUCTS=null;
+  toast('Reset done',true);setTimeout(function(){location.reload();},1200);
+}
+
+/* ═══════════════════════════════
+   TOAST
+═══════════════════════════════ */
+function toast(msg,isErr){
+  var t=document.getElementById('toast');t.textContent=msg;
+  t.className='toast show'+(isErr?' err':'');
+  setTimeout(function(){t.className='toast';},2800);
 }
 </script>
 </body>

@@ -8,7 +8,7 @@
       "offerPrice": null,
       "category": "Accessories",
       "image": "images/leather-bag.jpg",
-      "desc": "🔥 Smart & classy look! Genuine leather feel, perfect for office & daily use. Limited stock – grab yours now!"
+      "desc": "Handcrafted genuine leather bag — built to last a lifetime.\n\nFeatures:\n• Premium full-grain leather\n• Spacious main compartment\n• Inner zipper pocket\n• Adjustable shoulder strap\n\nAvailable in Brown and Black."
     },
     {
       "id": 2,
@@ -18,7 +18,7 @@
       "offerPrice": 850,
       "category": "Electronics",
       "image": "images/earbuds.jpg",
-      "desc": "🔥 Deep bass + clear sound! 6hrs battery & pocket-friendly. Best budget earbuds right now!"
+      "desc": "Crystal clear sound with deep, punchy bass.\n\nSpecifications:\n• 6 hours playtime per charge\n• Charging case included (18hr total)\n• Sweat & water resistant (IPX4)\n• Touch controls on each bud\n• Bluetooth 5.0 — 10m range"
     },
     {
       "id": 3,
@@ -28,7 +28,7 @@
       "offerPrice": 450,
       "category": "Clothing",
       "image": "images/kurta.jpg",
-      "desc": "🌿 Comfortable & stylish! Perfect for daily wear & outing. Soft cotton, all sizes available!"
+      "desc": "Soft 100% cotton kurta — perfect for all seasons.\n\nDetails:\n• Sizes: S, M, L, XL, XXL\n• Colors: White, Sky Blue, Olive\n• Machine washable\n• Breathable summer fabric\n• Traditional embroidery at collar"
     },
     {
       "id": 4,
@@ -38,7 +38,7 @@
       "offerPrice": null,
       "category": "Kitchen",
       "image": "images/water-bottle.jpg",
-      "desc": "Double-wall insulated. Keeps drinks cold 24hrs, hot 12hrs. 750ml capacity. Leak-proof lid."
+      "desc": "Double-wall vacuum insulated bottle — keeps drinks perfect all day.\n\nSpecs:\n• Capacity: 750ml\n• Cold: up to 24 hours\n• Hot: up to 12 hours\n• Leak-proof lid\n• BPA-free stainless steel"
     },
     {
       "id": 5,
@@ -48,7 +48,7 @@
       "offerPrice": 1800,
       "category": "Electronics",
       "image": "images/smart-watch.jpg",
-      "desc": "💧 Keep drinks cold 24hrs! Leak-proof & durable. Must-have for travel & gym!"
+      "desc": "Stay connected and healthy on the go.\n\nFeatures:\n• Heart rate & SpO2 monitor\n• Step counter & sleep tracker\n• 7-day battery life\n• Notification alerts (calls, SMS, apps)\n• Water resistant (50m)\n• Compatible with Android & iOS"
     },
     {
       "id": 6,
@@ -58,7 +58,7 @@
       "offerPrice": null,
       "category": "Home",
       "image": "images/candle-set.jpg",
-      "desc": "Set of 3 luxury scented candles. Lavender, rose, and jasmine. 30+ hours burn time each."
+      "desc": "A luxury set of 3 hand-poured scented candles.\n\nScents included:\n• Lavender — calming & relaxing\n• Rose — romantic & warm\n• Jasmine — fresh & uplifting\n\n30+ burn hours each. Made with natural soy wax."
     },
     {
       "id": 7,
@@ -68,7 +68,7 @@
       "offerPrice": null,
       "category": "Kitchen",
       "image": "images/coffee-mug.jpg",
-      "desc": "Handmade ceramic mug, 350ml. Microwave and dishwasher safe. Unique earthy glaze design."
+      "desc": "Handmade ceramic mug with a unique earthy glaze.\n\nDetails:\n• 350ml capacity\n• Microwave safe\n• Dishwasher safe\n• Each piece is unique — no two alike\n• Comfortable ergonomic handle"
     },
     {
       "id": 8,
@@ -78,7 +78,7 @@
       "offerPrice": null,
       "category": "Office",
       "image": "images/desk-organizer.jpg",
-      "desc": "Bamboo desk organizer with 5 compartments. Keep your workspace clean and productive."
+      "desc": "Bamboo desk organizer — keep your workspace clean and productive.\n\nIncludes:\n• 5 compartments (pens, notes, cards, etc.)\n• Phone stand slot\n• Eco-friendly bamboo material\n• Non-slip rubber base\n• Easy to assemble"
     }
   ]
 }

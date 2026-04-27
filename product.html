@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Product — NexaMart</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#faf7f2;--card:#fff;--ink:#1a1410;--muted:#7a6f65;--accent:#c8442a;--gold:#e8a020;--border:#e8e0d5;--radius:14px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);}
+img{display:block;max-width:100%;}
+a{text-decoration:none;color:inherit;}
+
+nav{background:var(--ink);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:200;}
+.logo{font-family:'Playfair Display',serif;color:#fff;font-size:1.5rem;font-weight:900;letter-spacing:-1px;}
+.logo span{color:var(--gold);}
+.nav-right{display:flex;align-items:center;gap:14px;}
+.back-btn{color:rgba(255,255,255,0.6);font-size:0.88rem;font-weight:500;display:flex;align-items:center;gap:5px;}
+.back-btn:hover{color:#fff;}
+.cart-btn{background:var(--accent);color:#fff;border:none;padding:9px 20px;border-radius:50px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.9rem;cursor:pointer;display:flex;align-items:center;gap:7px;transition:background .2s;}
+.cart-btn:hover{background:#a8321a;}
+.cart-count{background:var(--gold);color:var(--ink);border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;}
+
+.container{max-width:960px;margin:0 auto;padding:40px 24px 80px;}
+.breadcrumb{font-size:.82rem;color:var(--muted);margin-bottom:28px;}
+.breadcrumb a{color:var(--muted);}
+.breadcrumb a:hover{color:var(--accent);}
+.breadcrumb span{color:var(--ink);}
+
+.product-layout{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;}
+.product-image{border-radius:var(--radius);overflow:hidden;background:#f0e8dc;aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:8rem;position:relative;}
+.product-image img{width:100%;height:100%;object-fit:cover;}
+.offer-tag{position:absolute;top:14px;left:14px;background:var(--accent);color:#fff;font-size:.75rem;font-weight:700;padding:4px 10px;border-radius:6px;}
+
+.product-details{display:flex;flex-direction:column;gap:16px;}
+.p-cat{font-size:.78rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
+.p-name{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;line-height:1.15;}
+.p-price-box{display:flex;align-items:baseline;gap:10px;}
+.p-price-now{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--accent);}
+.p-price-old{font-size:1rem;color:var(--muted);text-decoration:line-through;}
+.p-badge{background:var(--accent);color:#fff;font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:20px;}
+
+.p-desc{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:18px 20px;font-size:.93rem;line-height:1.75;color:#2a2218;
+  white-space:pre-line;   /* ← renders \n as line breaks */
+}
+
+.p-actions{display:flex;flex-direction:column;gap:10px;}
+.btn-add-main{background:var(--accent);color:#fff;border:none;padding:15px 28px;border-radius:50px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;transition:background .2s;text-align:center;}
+.btn-add-main:hover{background:#a8321a;}
+.btn-cart-view{background:transparent;color:var(--ink);border:2px solid var(--border);padding:13px 28px;border-radius:50px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:.95rem;cursor:pointer;transition:border-color .2s;text-align:center;}
+.btn-cart-view:hover{border-color:var(--ink);}
+
+.delivery-badge{display:flex;align-items:center;gap:8px;background:#f0faf5;border:1px solid #b0e0c8;border-radius:9px;padding:10px 14px;font-size:.83rem;color:#1a6040;}
+.not-found{text-align:center;padding:80px 20px;color:var(--muted);}
+.not-found span{font-size:4rem;display:block;margin-bottom:16px;}
+
+/* CART OVERLAY */
+.overlay{display:none;position:fixed;inset:0;z-index:300;background:rgba(26,20,16,.55);backdrop-filter:blur(3px);align-items:center;justify-content:center;padding:16px;}
+.overlay.open{display:flex;}
+.cart-panel{background:var(--card);border-radius:20px;max-width:520px;width:100%;max-height:92vh;overflow-y:auto;animation:slideUp .28s ease;}
+@keyframes slideUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+.cart-hdr{padding:20px 24px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--card);z-index:1;}
+.cart-hdr h2{font-family:'Playfair Display',serif;font-size:1.3rem;}
+.x-btn{background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--muted);}
+.cart-body{padding:12px 24px;}
+.cart-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);}
+.ci-thumb{width:46px;height:46px;border-radius:8px;background:#f0e8dc;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;overflow:hidden;}
+.ci-thumb img{width:100%;height:100%;object-fit:cover;}
+.ci-info{flex:1;min-width:0;}
+.ci-name{font-weight:600;font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ci-price{color:var(--accent);font-weight:600;font-size:.85rem;}
+.ci-saved{color:#2ecc71;font-size:.72rem;}
+.qty-row{display:flex;align-items:center;gap:7px;}
+.qb{background:var(--border);border:none;width:26px;height:26px;border-radius:50%;cursor:pointer;font-size:.95rem;font-weight:700;transition:background .15s;}
+.qb:hover{background:var(--accent);color:#fff;}
+.qn{font-weight:600;min-width:18px;text-align:center;font-size:.9rem;}
+.del-btn{background:none;border:none;cursor:pointer;color:#ccc;font-size:1rem;padding:4px;transition:color .15s;}
+.del-btn:hover{color:var(--accent);}
+.cart-empty{text-align:center;padding:36px 0;color:var(--muted);}
+.cart-empty span{font-size:3rem;display:block;margin-bottom:10px;}
+.cart-ftr{padding:14px 24px 20px;border-top:1px solid var(--border);}
+.cart-summary{margin-bottom:14px;}
+.summary-row{display:flex;justify-content:space-between;font-size:.9rem;margin-bottom:6px;color:var(--muted);}
+.summary-row.total{font-weight:700;font-size:1.05rem;color:var(--ink);}
+.summary-row.total span:last-child{color:var(--accent);font-family:'Playfair Display',serif;font-size:1.2rem;}
+.order-form h3{font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:12px;}
+.fg{display:flex;flex-direction:column;gap:4px;margin-bottom:10px;}
+.fg label{font-size:.78rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;}
+.fg input,.fg textarea,.fg select{padding:9px 12px;border:1.5px solid var(--border);border-radius:9px;font-family:'DM Sans',sans-serif;font-size:.92rem;color:var(--ink);background:var(--bg);transition:border-color .2s;resize:none;}
+.fg input:focus,.fg textarea:focus,.fg select:focus{outline:none;border-color:var(--accent);}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.delivery-info{background:#fff8ec;border:1px solid #f0d090;border-radius:8px;padding:10px 14px;font-size:.82rem;color:#7a5a10;margin-bottom:10px;line-height:1.6;}
+.submit-btn{width:100%;background:var(--accent);color:#fff;border:none;padding:13px;border-radius:50px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;transition:background .2s;}
+.submit-btn:hover{background:#a8321a;}
+.submit-btn:disabled{background:var(--muted);cursor:not-allowed;}
+.success-msg{text-align:center;padding:28px 16px;display:none;}
+.success-msg .si{font-size:3rem;}
+.success-msg h3{font-family:'Playfair Display',serif;font-size:1.4rem;margin:10px 0 8px;}
+.success-msg p{color:var(--muted);font-size:.9rem;}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(70px);background:var(--ink);color:#fff;padding:10px 22px;border-radius:50px;font-weight:600;font-size:.88rem;z-index:999;transition:transform .3s cubic-bezier(.17,.67,.39,1.3);pointer-events:none;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+
+@media(max-width:700px){
+  .product-layout{grid-template-columns:1fr;gap:24px;}
+  .container{padding:24px 16px 60px;}
+  .p-name{font-size:1.5rem;}
+  .p-price-now{font-size:1.5rem;}
+  .fg2{grid-template-columns:1fr;}
+  nav{padding:0 16px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Nexa<span>Mart</span></a>
+  <div class="nav-right">
+    <a href="index.html" class="back-btn">← Back to Shop</a>
+    <button class="cart-btn" onclick="openCart()">🛒 Cart <span class="cart-count" id="cartCount">0</span></button>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="breadcrumb" id="breadcrumb"></div>
+  <div id="productContent"></div>
+</div>
+
+<!-- CART OVERLAY (same as index) -->
+<div class="overlay" id="cartOverlay" onclick="overlayClose(event,'cartOverlay')">
+  <div class="cart-panel">
+    <div class="cart-hdr">
+      <h2>Your Cart 🛒</h2>
+      <button class="x-btn" onclick="closeCart()">✕</button>
+    </div>
+    <div class="cart-body" id="cartBody"></div>
+    <div class="cart-ftr" id="cartFtr" style="display:none;">
+      <div class="cart-summary" id="cartSummary"></div>
+      <div id="orderFormWrap">
+        <div class="order-form">
+          <h3>Delivery Details</h3>
+          <div class="fg2">
+            <div class="fg"><label>Name *</label><input type="text" id="oName" placeholder="Your full name"/></div>
+            <div class="fg"><label>Phone *</label><input type="tel" id="oPhone" placeholder="+880..."/></div>
+          </div>
+          <div class="fg">
+            <label>Delivery District *</label>
+            <select id="oDistrict" onchange="updateDeliveryCharge()">
+              <option value="">— Select district —</option>
+              <option value="lakshmipur">Lakshmipur (৳80)</option>
+              <option value="dhaka">Dhaka (৳80)</option>
+              <option value="other">Other District (৳150)</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label>Full Address *</label>
+            <textarea id="oAddress" rows="2" placeholder="House, road, area…"></textarea>
+          </div>
+          <div class="fg">
+            <label>Special Note <span style="font-weight:400;text-transform:none;">(optional)</span></label>
+            <textarea id="oNote" rows="2" placeholder="Any special request…"></textarea>
+          </div>
+          <div class="delivery-info" id="deliveryInfo">Select your district to see delivery charge.</div>
+          <form name="order" netlify netlify-honeypot="bot-field" hidden>
+            <input name="customer-name"/><input name="phone"/>
+            <input name="district"/><input name="address"/>
+            <input name="note"/><textarea name="order-items"></textarea>
+            <input name="subtotal"/><input name="delivery"/><input name="total"/>
+          </form>
+          <button class="submit-btn" id="submitBtn" onclick="submitOrder()">📦 Place Order</button>
+        </div>
+      </div>
+      <div class="success-msg" id="successMsg">
+        <div class="si">🎉</div>
+        <h3>Order Placed!</h3>
+        <p>Thank you! The shop will contact you on your phone shortly.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+'use strict';
+var ALL_PRODUCTS=[];
+var CURRENT=null;
+var cart=[];
+var DELIVERY_CHARGE=0;
+
+function sellingPrice(p){return(p.offerPrice&&p.offerPrice>0&&p.offerPrice<p.price)?p.offerPrice:p.price;}
+
+async function init(){
+  /* load products */
+  try{
+    var s=localStorage.getItem('shop_products');
+    if(s){var a=JSON.parse(s);if(Array.isArray(a)&&a.length){ALL_PRODUCTS=a;}}
+  }catch(e){}
+  if(!ALL_PRODUCTS.length){
+    try{var r=await fetch('products.json?v='+Date.now());if(!r.ok)throw 0;var d=await r.json();ALL_PRODUCTS=d.products||[];}catch(e){ALL_PRODUCTS=[];}
+  }
+
+  /* get id from URL */
+  var params=new URLSearchParams(window.location.search);
+  var id=parseInt(params.get('id'));
+  CURRENT=ALL_PRODUCTS.find(function(p){return p.id===id;})||null;
+
+  /* set page title */
+  if(CURRENT){document.title=CURRENT.name+' — NexaMart';}
+
+  renderProduct();
+}
+
+function renderProduct(){
+  var bc=document.getElementById('breadcrumb');
+  var content=document.getElementById('productContent');
+
+  if(!CURRENT){
+    bc.innerHTML='<a href="index.html">Home</a> › Not Found';
+    content.innerHTML='<div class="not-found"><span>🔍</span><p>Product not found.</p><a href="index.html" style="color:var(--accent);font-weight:600;">← Back to Shop</a></div>';
+    return;
+  }
+
+  var p=CURRENT;
+  bc.innerHTML='<a href="index.html">Home</a> › <a href="index.html">'+(p.category||'Products')+'</a> › <span>'+p.name+'</span>';
+
+  var sp=sellingPrice(p);
+  var hasOffer=p.offerPrice&&p.offerPrice>0&&p.offerPrice<p.price;
+  var pct=hasOffer?Math.round((1-p.offerPrice/p.price)*100):0;
+
+  var layout=document.createElement('div');
+  layout.className='product-layout';
+
+  /* IMAGE */
+  var imgWrap=document.createElement('div');imgWrap.className='product-image';
+  if(hasOffer){var tag=document.createElement('div');tag.className='offer-tag';tag.textContent=pct+'% OFF';imgWrap.appendChild(tag);}
+  if(p.image){
+    var img=document.createElement('img');img.src=p.image;img.alt=p.name;
+    img.onerror=function(){imgWrap.removeChild(img);imgWrap.style.fontSize='8rem';imgWrap.textContent=p.emoji||'📦';};
+    imgWrap.appendChild(img);
+  }else{imgWrap.style.fontSize='8rem';imgWrap.textContent=p.emoji||'📦';}
+
+  /* DETAILS */
+  var det=document.createElement('div');det.className='product-details';
+
+  /* category */
+  var cat=document.createElement('div');cat.className='p-cat';cat.textContent=p.category||'General';
+
+  /* name */
+  var nm=document.createElement('h1');nm.className='p-name';nm.textContent=p.name;
+
+  /* price */
+  var pb=document.createElement('div');pb.className='p-price-box';
+  var pn=document.createElement('span');pn.className='p-price-now';pn.textContent='\u09F3'+sp;
+  pb.appendChild(pn);
+  if(hasOffer){
+    var po=document.createElement('span');po.className='p-price-old';po.textContent='\u09F3'+p.price;
+    var badge=document.createElement('span');badge.className='p-badge';badge.textContent=pct+'% OFF';
+    pb.appendChild(po);pb.appendChild(badge);
+  }
+
+  /* description — white-space:pre-line handles \n */
+  var desc=document.createElement('div');desc.className='p-desc';desc.textContent=p.desc;
+
+  /* delivery note */
+  var dv=document.createElement('div');dv.className='delivery-badge';
+  dv.innerHTML='🚚 <span>Lakshmipur & Dhaka <strong>৳80</strong> &nbsp;·&nbsp; Other districts <strong>৳150</strong></span>';
+
+  /* actions */
+  var acts=document.createElement('div');acts.className='p-actions';
+  var addBtn=document.createElement('button');addBtn.className='btn-add-main';addBtn.textContent='🛒 Add to Cart';
+  addBtn.onclick=function(){addToCart(p.id);};
+  var viewCartBtn=document.createElement('button');viewCartBtn.className='btn-cart-view';viewCartBtn.textContent='View Cart →';
+  viewCartBtn.onclick=openCart;
+  acts.appendChild(addBtn);acts.appendChild(viewCartBtn);
+
+  det.appendChild(cat);det.appendChild(nm);det.appendChild(pb);det.appendChild(desc);det.appendChild(dv);det.appendChild(acts);
+  layout.appendChild(imgWrap);layout.appendChild(det);
+  content.appendChild(layout);
+}
+
+/* ── CART (same logic as index.html) ── */
+function addToCart(id){
+  var p=ALL_PRODUCTS.find(function(x){return x.id===id;});if(!p)return;
+  var price=sellingPrice(p);
+  var ex=cart.find(function(x){return x.id===id;});
+  if(ex){ex.qty++;}else{cart.push({id:p.id,name:p.name,emoji:p.emoji||'📦',image:p.image||null,price:price,regularPrice:p.price,qty:1});}
+  syncCartCount();toast((p.emoji||'📦')+' '+p.name+' added!');
+}
+function syncCartCount(){document.getElementById('cartCount').textContent=cart.reduce(function(s,i){return s+i.qty;},0);}
+function openCart(){renderCart();document.getElementById('cartOverlay').classList.add('open');}
+function closeCart(){document.getElementById('cartOverlay').classList.remove('open');}
+function overlayClose(e,id){if(e.target===document.getElementById(id))document.getElementById(id).classList.remove('open');}
+
+function renderCart(){
+  var body=document.getElementById('cartBody');var ftr=document.getElementById('cartFtr');
+  document.getElementById('successMsg').style.display='none';document.getElementById('orderFormWrap').style.display='block';
+  body.innerHTML='';
+  if(!cart.length){body.innerHTML='<div class="cart-empty"><span>🛒</span>Your cart is empty</div>';ftr.style.display='none';return;}
+  cart.forEach(function(item){
+    var row=document.createElement('div');row.className='cart-item';
+    var th=document.createElement('div');th.className='ci-thumb';
+    if(item.image){var ti=document.createElement('img');ti.src=item.image;ti.alt=item.name;ti.onerror=function(){th.removeChild(ti);th.textContent=item.emoji;};th.appendChild(ti);}
+    else{th.textContent=item.emoji;}
+    var inf=document.createElement('div');inf.className='ci-info';
+    var nm2=document.createElement('div');nm2.className='ci-name';nm2.textContent=item.name;
+    var pr=document.createElement('div');pr.className='ci-price';pr.textContent='\u09F3'+item.price+' \u00D7 '+item.qty+' = \u09F3'+(item.price*item.qty);
+    inf.appendChild(nm2);inf.appendChild(pr);
+    if(item.regularPrice>item.price){var sv=document.createElement('div');sv.className='ci-saved';sv.textContent='Saved \u09F3'+((item.regularPrice-item.price)*item.qty);inf.appendChild(sv);}
+    var qr=document.createElement('div');qr.className='qty-row';
+    var mb=document.createElement('button');mb.className='qb';mb.textContent='\u2212';
+    var qn=document.createElement('span');qn.className='qn';qn.textContent=item.qty;
+    var pb2=document.createElement('button');pb2.className='qb';pb2.textContent='+';
+    var db=document.createElement('button');db.className='del-btn';db.textContent='🗑';
+    (function(cid){mb.onclick=function(){changeQty(cid,-1);};pb2.onclick=function(){changeQty(cid,1);};db.onclick=function(){removeItem(cid);};})(item.id);
+    qr.appendChild(mb);qr.appendChild(qn);qr.appendChild(pb2);qr.appendChild(db);
+    row.appendChild(th);row.appendChild(inf);row.appendChild(qr);body.appendChild(row);
+  });
+  renderSummary();ftr.style.display='block';
+}
+function renderSummary(){
+  var sub=cart.reduce(function(s,i){return s+i.price*i.qty;},0);var total=sub+DELIVERY_CHARGE;
+  var s=document.getElementById('cartSummary');var dc=DELIVERY_CHARGE>0?'\u09F3'+DELIVERY_CHARGE:'Select district';
+  s.innerHTML='<div class="summary-row"><span>Subtotal</span><span>\u09F3'+sub+'</span></div>'+
+    '<div class="summary-row"><span>Delivery</span><span>'+dc+'</span></div>'+
+    '<div class="summary-row total"><span>Total</span><span>\u09F3'+total+'</span></div>';
+}
+function changeQty(id,d){var it=cart.find(function(x){return x.id===id;});if(it){it.qty+=d;if(it.qty<=0)cart=cart.filter(function(x){return x.id!==id;});}syncCartCount();renderCart();}
+function removeItem(id){cart=cart.filter(function(x){return x.id!==id;});syncCartCount();renderCart();}
+function updateDeliveryCharge(){
+  var district=document.getElementById('oDistrict').value;
+  DELIVERY_CHARGE=(district==='lakshmipur'||district==='dhaka')?80:(district==='other'?150:0);
+  var info=document.getElementById('deliveryInfo');
+  info.textContent=district?'Delivery charge for '+document.getElementById('oDistrict').options[document.getElementById('oDistrict').selectedIndex].text+' applied.':'Select your district to see delivery charge.';
+  renderSummary();
+}
+async function submitOrder(){
+  var name=document.getElementById('oName').value.trim();var phone=document.getElementById('oPhone').value.trim();
+  var district=document.getElementById('oDistrict').value;var address=document.getElementById('oAddress').value.trim();
+  var note=document.getElementById('oNote').value.trim();
+  if(!name){alert('Please enter your name.');return;}if(!phone){alert('Please enter phone.');return;}
+  if(!district){alert('Please select district.');return;}if(!address){alert('Please enter address.');return;}
+  var sub=cart.reduce(function(s,i){return s+i.price*i.qty;},0);var total=sub+DELIVERY_CHARGE;
+  var lines=cart.map(function(x){return x.emoji+' '+x.name+' x'+x.qty+' = \u09F3'+(x.price*x.qty);}).join('\n');
+  var districtLabel=['lakshmipur','dhaka'].indexOf(district)>=0?district.charAt(0).toUpperCase()+district.slice(1):'Other District';
+  var orders=JSON.parse(localStorage.getItem('shop_orders')||'[]');
+  var maxId=orders.reduce(function(m,o){return Math.max(m,o.id||0);},0);
+  orders.push({id:maxId+1,name:name,phone:phone,district:districtLabel,address:address,note:note,
+    items:cart.map(function(x){return{id:x.id,name:x.name,emoji:x.emoji,price:x.price,qty:x.qty};}),
+    subtotal:sub,delivery:DELIVERY_CHARGE,total:total,status:'new',date:new Date().toLocaleString()});
+  localStorage.setItem('shop_orders',JSON.stringify(orders));
+  var btn=document.getElementById('submitBtn');btn.disabled=true;btn.textContent='Placing order…';
+  var settings=JSON.parse(localStorage.getItem('shop_settings')||'{}');
+  if(settings.formspreeId){try{await fetch('https://formspree.io/f/'+settings.formspreeId,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({name:name,phone:phone,district:districtLabel,address:address,note:note||'None',message:lines,subtotal:'\u09F3'+sub,delivery:'\u09F3'+DELIVERY_CHARGE,total:'\u09F3'+total})});}catch(e){}}
+  try{var fd=new FormData();fd.append('form-name','order');fd.append('customer-name',name);fd.append('phone',phone);fd.append('district',districtLabel);fd.append('address',address);fd.append('note',note||'None');fd.append('order-items',lines);fd.append('subtotal','\u09F3'+sub);fd.append('delivery','\u09F3'+DELIVERY_CHARGE);fd.append('total','\u09F3'+total);await fetch('/',{method:'POST',body:fd});}catch(e){}
+  document.getElementById('orderFormWrap').style.display='none';document.getElementById('successMsg').style.display='block';
+  cart=[];syncCartCount();btn.disabled=false;btn.textContent='📦 Place Order';
+}
+function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2000);}
+
+init();
+</script>
+</body>
+</html>
