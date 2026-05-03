@@ -1,54 +1,75 @@
+
 {
   "products": [
     {
       "id": 1,
-      "name": "Ladies Trendy Handbag",
-      "emoji": "👜",
-      "price": 750,
-      "offerPrice": 550,
-      "category": "Women Accessories",
-      "images": ["images/ladies-handbag.jpg", "images/ladies-handbag.jpg", "images/ladies-handbag.jpg"],
-      "desc": "Trendy everyday handbag for women — stylish, lightweight and budget friendly.\n\nFeatures:\n• Premium PU leather finish\n• Spacious main compartment\n• Inner zipper pocket\n• Perfect for daily use, shopping & office\n• Available in Black, Brown, Beige"
+      "name": "Metal Turbo Fan 5 Speed",
+      "emoji": "🌀",
+      "price": 990,
+      "offerPrice": 790,
+      "category": "Home & Office",
+      "images": [
+        "images/turbo-fan_1.jpg",
+        "images/turbo-fan_2.jpg",
+        "images/turbo-fan_3.jpg"
+      ],
+      "desc": "Powerful high-speed turbo fan designed for maximum airflow and comfort.\n\nFeatures:\n• 5 adjustable speed levels\n• Strong air throw technology\n• Energy efficient motor\n• Compact & portable design\n• Perfect for home & office use"
     },
     {
       "id": 2,
-      "name": "Wireless Earbuds",
+      "name": "A9 Pro ENC + ANC Touch Display Earbuds",
       "emoji": "🎧",
-      "price": 1100,
-      "offerPrice": 850,
+      "price": 1399,
+      "offerPrice": 1099,
       "category": "Electronics",
-      "images": ["images/earbuds.jpg", "images/earbuds.jpg", "images/earbuds.jpg"],
-      "desc": "High-quality wireless earbuds with deep bass and clear sound.\n\nFeatures:\n• 6–18 hours battery backup\n• Bluetooth 5.0\n• Touch control\n• Sweat resistant design\n• Fast auto pairing"
+      "images": [
+        "images/earbuds_1.jpg",
+        "images/earbuds_2.jpg",
+        "images/earbuds_3.jpg"
+      ],
+      "desc": "Next-gen smart earbuds with touch display case and premium sound experience.\n\nFeatures:\n• ENC + ANC noise cancellation\n• Call receive/reject from earbuds\n• Touch control (play/pause/next)\n• YouTube & video control\n• Dual earbud calling support\n\nBattery:\n• 1 hour full charge\n• 4–5 hours continuous use\n• Extended backup with charging case\n\nPremium imported product."
     },
     {
       "id": 3,
-      "name": "Cotton Kurta",
-      "emoji": "👕",
-      "price": 600,
-      "offerPrice": 450,
-      "category": "Women Fashion",
-      "images": ["images/kurta.jpg", "images/kurta.jpg", "images/kurta.jpg"],
-      "desc": "Soft breathable cotton kurta — perfect for daily and casual wear.\n\nDetails:\n• Free size (fits S–L)\n• Colors: Black, White, Sky Blue, Pastel Pink\n• Lightweight summer fabric\n• Loose comfortable fit design"
+      "name": "Premium Matt Black Lavender Scented Candle",
+      "emoji": "🕯️",
+      "price": 1580,
+      "offerPrice": 1190,
+      "category": "Gift Items",
+      "images": [
+        "images/black-candle_1.jpg",
+        "images/black-candle_2.jpg",
+        "images/black-candle_3.jpg"
+      ],
+      "desc": "Indulge in a luxury aromatic experience with our premium black lavender scented candle — crafted for elite taste and relaxation.\n\nSpecifications:\n• Size: 6×7 cm\n• Weight: 260g\n• Material: Soy wax + essential oil\n• Luxury gradient glass finish\n• Long-lasting lavender fragrance\n\nPerfect for: Home decor | Romantic ambiance | Premium gifting | Relaxation"
     },
     {
       "id": 4,
-      "name": "Women Casual Dress",
-      "emoji": "👗",
-      "price": 900,
-      "offerPrice": 700,
-      "category": "Women Fashion",
-      "images": ["images/kurta.jpg", "images/kurta.jpg"],
-      "desc": "Elegant casual dress for modern women — comfortable and stylish.\n\nFeatures:\n• Floral & plain designs\n• Free size fit (S–L)\n• Soft cotton fabric\n• Suitable for daily wear & outings"
+      "name": "Premium White Lavender Scented Candle",
+      "emoji": "🕯️",
+      "price": 1190,
+      "offerPrice": 999,
+      "category": "Gift Items",
+      "images": [
+        "images/white-candle_1.jpg",
+        "images/white-candle_2.jpg",
+        "images/white-candle_3.jpg"
+      ],
+      "desc": "Elegant and soothing premium white lavender candle designed for a calm, aesthetic and luxurious atmosphere.\n\nSpecifications:\n• Size: 6×7 cm\n• Weight: 260g\n• Material: Soy wax + essential oil\n• Minimal luxury white glass design\n• Relaxing lavender aroma\n\nBest for: Home styling | Gift | Spa vibe | Peaceful mood"
     },
     {
       "id": 5,
-      "name": "Scented Candle Set",
+      "name": "LED Flameless Electric Candle Lamp",
       "emoji": "🕯️",
       "price": 380,
-      "offerPrice": null,
+      "offerPrice": 229,
       "category": "Gift Items",
-      "images": ["images/earbuds.jpg"],
-      "desc": "Luxury scented candle set for home decor and gifting.\n\nScents:\n• Lavender\n• Rose\n• Jasmine\n\n30+ hours burn time. Made with natural soy wax."
+      "images": [
+        "images/led-candle_1.jpg",
+        "images/led-candle_2.jpg",
+        "images/led-candle_3.jpg"
+      ],
+      "desc": "Modern flameless LED candle with realistic flickering effect — safe and elegant lighting solution.\n\nFeatures:\n• No fire, no smoke\n• Battery operated\n• Warm ambient glow\n• Durable plastic body\n• Perfect for decor & events"
     },
     {
       "id": 6,
@@ -57,18 +78,12 @@
       "price": 220,
       "offerPrice": null,
       "category": "Gift Items",
-      "images": ["images/earbuds.jpg", "images/ladies-handbag.jpg"],
+      "images": [
+        "images/mug_1.jpg",
+        "images/mug_2.jpg"
+      ],
       "desc": "Stylish ceramic coffee mug — perfect for daily tea or coffee.\n\nDetails:\n• 350ml capacity\n• Microwave safe\n• Dishwasher safe\n• Unique handmade finish"
-    },
-    {
-      "id": 7,
-      "name": "Desk Organizer",
-      "emoji": "🗂️",
-      "price": 550,
-      "offerPrice": null,
-      "category": "Home & Office",
-      "images": ["images/kurta.jpg", "images/earbuds.jpg"],
-      "desc": "Eco-friendly bamboo desk organizer for a clean workspace.\n\nFeatures:\n• Multiple compartments\n• Phone stand included\n• Durable bamboo material\n• Minimal aesthetic design"
     }
   ]
 }
+
